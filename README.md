@@ -1,6 +1,6 @@
 # Proyecto-CourseTech
 Plataforma web de capacitación en habilidades digitales a través de cursos, evaluaciones y tutorías.
-Esta platorma está diseñada para facilitar la capacitación en habilidades digitales. Permite a los usuarios registrarse, realizar evaluaciones, acceder a foros de discusión, solicitar tutorías y recibir asistencia personalizada. El sistema incluye un panel de administración y tutorías para gestionar usuarios, cursos, evaluaciones y contenidos, todo integrado en una arquitectura web con frontend y backend conectados a una base de datos MySQL.
+Esta plataforma está diseñada para facilitar la capacitación en habilidades digitales. Permite a los usuarios registrarse, realizar evaluaciones, acceder a foros de discusión, solicitar tutorías y recibir asistencia personalizada. El sistema incluye un panel de administración y tutorías para gestionar usuarios, cursos, evaluaciones y contenidos, todo integrado en una arquitectura web con frontend y backend conectados a una base de datos MySQL.
 
 <br>
 
