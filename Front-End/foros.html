@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <title>Foros</title>
+</head>
+
+<body class="bg-gray-50 text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
+    <section id="desc-foros" class="px-[5%] py-8 md:py-10 lg:py-12">
+        <div class="container mx-auto">
+            <div class="flex justify-between items-center flex-wrap gap-4">
+
+                <h1
+                    class="mb-2 py-2 bg-gradient-to-r from-sky-500 via-sky-600 to-sky-500 inline-block text-transparent bg-clip-text text-6xl font-bold md:mb-3 md:text-9xl lg:text-7xl">
+                    Foros
+                </h1>
+
+                <div class="flex items-center gap-2">
+
+                    <button onclick="cerrarSesion()"
+                        class="group flex items-center justify-start w-11 h-11 bg-red-600 rounded-lg cursor-pointer relative overflow-hidden transition-all duration-200 shadow-lg hover:w-32 hover:rounded-lg active:translate-x-1 active:translate-y-1">
+                        <div
+                            class="flex items-center justify-center w-full transition-all duration-300 group-hover:justify-start group-hover:px-3">
+                            <svg class="w-4 h-4" viewBox="0 0 512 512" fill="white">
+                                <path
+                                    d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div
+                            class="absolute right-5 transform translate-x-full opacity-0 text-white text-lg font-semibold transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
+                            Cerrar
+                        </div>
+                    </button>
+
+                    <button id="toggleDark" class="w-11 h-11 p-2 rounded-lg shadow-lg bg-gray-200 dark:bg-gray-700">
+                        🌓
+                    </button>
+
+                     <button onclick="volverIncio()"
+                        class="w-11 h-11 text-lg p-2 rounded-lg shadow-lg bg-gray-300 dark:bg-gray-700">
+                        🏠
+                    </button>
+
+                </div>
+
+            </div>
+            <p class="md:text-md">
+                Un espacio para compartir, aprender y crecer juntos en habilidades digitales.
+            </p>
+        </div>
+    </section>
+
+    <section id="detalle-foros" class="px-[5%] mt-4">
+        <div class="container mx-auto">
+            <div
+                class="mb-6 grid grid-cols-1 items-start gap-5 md:mb-8 md:grid-cols-2 md:gap-x-12 lg:mb-10 lg:gap-x-20">
+                <div>
+                    <h2 class="text-2xl leading-[1.2] font-bold md:text-3xl lg:text-4xl">
+                        Participa en nuestros foros y<p
+                            class="pb-4 bg-gradient-to-r from-sky-500 via-sky-600 to-sky-500 inline-block text-transparent bg-clip-text">
+                            comparte tus ideas y experiencias.</p>
+                    </h2>
+                </div>
+                <div>
+                    <p class="md:text-md dark:text-gray-200">
+                        En nuestros foros, los usuarios pueden crear nuevos temas de discusión y
+                        responder a las publicaciones de otros. Fomentamos un ambiente de
+                        respeto y colaboración, donde cada voz cuenta. Asegúrate de seguir
+                        nuestras normas de conducta para mantener un espacio seguro y
+                        amigable.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 items-start gap-y-12 md:grid-cols-3 md:gap-x-8 lg:gap-x-12">
+
+                <div id="card1" class="w-full shadow-xl p-3 rounded-md bg-white dark:bg-gray-800">
+                    <div class="mb-3 md:mb-4">
+                        <img src="images/curso1-img1.avif" class="w-full h-60 object-cover rounded-lg" />
+                    </div>
+                    <h3 class="mb-1 text-xl font-bold md:mb-2 md:text-2xl">Foro curso 1</h3>
+                    <p class="dark:text-gray-200">Respeta a los demás y contribuye de manera positiva.</p>
+
+                    <a href="foro1.html" class="w-full">
+                        <button
+                            class="w-full mt-5 bg-sky-500 hover:bg-sky-600 text-white font-semibold py-2 rounded-md transition duration-200">
+                            Ir a foro 1
+                        </button>
+                    </a>
+                </div>
+
+                <div id="card2" class="w-full shadow-xl p-3 rounded-md bg-white dark:bg-gray-800">
+                    <div class="mb-3 md:mb-4">
+                        <img src="images/curso2-img1.png" class="rounded-lg w-full h-60 object-cover" />
+                    </div>
+                    <h3 class="mb-1 text-xl font-bold md:mb-2 md:text-2xl">Foro curso 2</h3>
+                    <p class="dark:text-gray-200">Respeta a los demás y contribuye de manera positiva.</p>
+
+                    <a href="foro2.html" class="w-full">
+                        <button
+                            class="w-full mt-5 bg-sky-500 hover:bg-sky-600 text-white font-semibold py-2 rounded-md transition duration-200">
+                            Ir a foro 2
+                        </button>
+                    </a>
+                </div>
+
+                <div id="card3" class="w-full shadow-xl p-3 rounded-md bg-white dark:bg-gray-800">
+                    <div class="mb-3 md:mb-4">
+                        <img src="images/curso3-img3.jpg" class="w-full h-60 object-cover rounded-lg" />
+                    </div>
+                    <h3 class="mb-1 text-xl font-bold md:mb-2 md:text-2xl">Foro curso 3</h3>
+                    <p class="dark:text-gray-200">Respeta a los demás y contribuye de manera positiva.</p>
+
+                    <a href="foro3.html" class="w-full">
+                        <button
+                            class="w-full mt-5 bg-sky-500 hover:bg-sky-600 text-white font-semibold py-2 rounded-md transition duration-200">
+                            Ir a foro 3
+                        </button>
+                    </a>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </section>
+</body>
+
+<script>
+    function cerrarSesion() {
+        localStorage.removeItem('token');
+        window.location.href = 'index.html';
+    }
+
+    const toggle = document.getElementById('toggleDark');
+    const html = document.documentElement;
+
+    toggle.addEventListener('click', () => {
+        html.classList.toggle('dark');
+        localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+    });
+
+    // Establecer el tema al cargar
+    if (
+        localStorage.theme === 'dark' ||
+        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark');
+    }
+
+    function volverIncio() {
+        window.location.href = 'inicio.html';
+    }
+</script>
+
+</html>

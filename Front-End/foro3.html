@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <title>Foros - Curso 3</title>
+</head>
+
+<body class="bg-gray-50 text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
+    <section id="desc-foro1" class="px-[5%] py-8 md:py-10 lg:py-12">
+        <div class="container mx-auto">
+            <div class="flex justify-between items-center flex-wrap gap-4">
+
+                <h1
+                    class="mb-5 py-2 bg-gradient-to-r from-sky-500 via-sky-600 to-sky-500 inline-block text-transparent bg-clip-text text-6xl font-bold md:mb-6 md:text-9xl lg:text-7xl">
+                    Foro curso 3 - Mantenimiento de PC
+                </h1>
+
+                <div class="flex items-center gap-2">
+
+                    <button onclick="cerrarSesion()"
+                        class="group flex items-center focus:outline-none justify-start w-11 h-11 bg-red-600 rounded-lg cursor-pointer relative overflow-hidden transition-all duration-200 shadow-lg hover:w-32 hover:rounded-lg active:translate-x-1 active:translate-y-1">
+                        <div
+                            class="flex items-center justify-center w-full transition-all duration-300 group-hover:justify-start group-hover:px-3">
+                            <svg class="w-4 h-4" viewBox="0 0 512 512" fill="white">
+                                <path
+                                    d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div
+                            class="absolute right-5 transform translate-x-full opacity-0 text-white text-lg font-semibold transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
+                            Cerrar
+                        </div>
+                    </button>
+
+                    <button id="toggleDark" class="w-11 h-11 p-2 rounded-lg shadow-lg bg-gray-200 dark:bg-gray-700">
+                        🌓
+                    </button>
+
+                    <button onclick="volverIncio()"
+                        class="w-11 h-11 text-lg p-2 rounded-lg shadow-lg bg-gray-300 dark:bg-gray-700">
+                        🏠
+                    </button>
+
+                </div>
+
+            </div>
+            <p class="md:text-md">
+                Interactua con los demás y comparte el conocimiento obtenido en el curso de fundamentos de ofimática.
+            </p>
+        </div>
+    </section>
+
+    <section class="px-[5%] mb-10">
+        <div class="container mx-auto">
+
+            <div id="mensajes" class="space-y-4 mb-8"></div>
+
+            <form id="form-mensaje" class="bg-white p-6 rounded shadow-md dark:bg-gray-800">
+                <h2 class="text-2xl text-sky-500 dark:text-sky-400 font-semibold mb-4">Participar en el foro</h2>
+                <textarea id="mensaje" rows="4"
+                    class="w-full dark:bg-gray-600 dark:border-none border rounded px-4 py-2 mb-4 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500"
+                    placeholder="Escribe tu mensaje aquí..." required></textarea>
+                <button type="submit"
+                    class="bg-sky-500 hover:bg-sky-600 text-white font-semibold px-4 py-2 rounded-md">Enviar
+                    mensaje</button>
+            </form>
+        </div>
+
+    </section>
+
+</body>
+
+<script>
+    const token = localStorage.getItem('token');
+    const idCurso = 3;
+    async function cargarMensajes() {
+        const res = await fetch(`http://localhost:5000/api/foros/curso/${idCurso}`, {
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        });
+
+        const data = await res.json();
+        const contenedor = document.getElementById('mensajes');
+        contenedor.innerHTML = '';
+
+        if (data.length === 0) {
+            contenedor.innerHTML = '<p class="text-gray-600 dark:text-gray-200">Aún no hay mensajes en este foro.</p>';
+            return;
+        }
+
+        data.forEach(msg => {
+            const div = document.createElement('div');
+            div.className = 'bg-white p-4 rounded shadow flex items-start gap-4 dark:bg-gray-800';
+
+            // Usa avatar con iniciales
+            const avatarURL = `https://ui-avatars.com/api/?name=${encodeURIComponent(msg.nombres + ' ' + msg.apellidos)}&background=0ea5e9&color=fff&rounded=true`;
+
+            div.innerHTML = `
+                <img src="${avatarURL}" alt="avatar" class="w-12 h-12 rounded-full object-cover">
+                <div>
+                <p class="text-gray-800 dark:text-gray-200">${msg.mensaje}</p>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                    Publicado por <strong>${msg.nombres} ${msg.apellidos}</strong> el ${new Date(msg.fecha).toLocaleString()}
+                </p>
+                </div>
+            `;
+            contenedor.appendChild(div);
+        });
+    }
+
+    document.getElementById('form-mensaje').addEventListener('submit', async e => {
+        e.preventDefault();
+
+        const mensaje = document.getElementById('mensaje').value.trim();
+        if (!mensaje) return alert('⚠️ El mensaje no puede estar vacío');
+
+        try {
+            const res = await fetch(`http://localhost:5000/api/foros/curso/${idCurso}/mensaje`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + token
+                },
+                body: JSON.stringify({ mensaje })
+            });
+
+            const data = await res.json();
+
+            if (res.ok) {
+                document.getElementById('mensaje').value = '';
+                cargarMensajes();
+            } else {
+                alert('❌ Error al enviar mensaje: ' + (data.error || 'Error desconocido'));
+            }
+        } catch (err) {
+            console.error('❌ Error al hacer la solicitud:', err);
+            alert('❌ No se pudo enviar el mensaje. Revisa la consola.');
+        }
+    });
+
+
+    document.addEventListener('DOMContentLoaded', cargarMensajes);
+
+    function cerrarSesion() {
+        localStorage.removeItem('token');
+        window.location.href = 'index.html';
+    }
+
+    const toggle = document.getElementById('toggleDark');
+    const html = document.documentElement;
+
+    toggle.addEventListener('click', () => {
+        html.classList.toggle('dark');
+        localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+    });
+
+    // Establecer el tema al cargar
+    if (
+        localStorage.theme === 'dark' ||
+        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark');
+    }
+
+    function volverIncio() {
+        window.location.href = 'inicio.html';
+    }
+
+</script>
+
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+    }
+  </script>
+  <title>Gestionar Preguntas</title>
+</head>
+
+<body class="bg-gray-50 min-h-screen text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
+
+  <section id="titulo" class="px-[5%] py-6 md:py-8 lg:py-10 mx-auto">
+    <div class="container mx-auto">
+
+      <div class="flex justify-between items-center flex-wrap gap-4">
+        <h1
+          class="mb-5 text-4xl font-bold md:mb-6 md:text-5xl lg:text-6xl py-3 bg-gradient-to-r from-sky-500 via-sky-600 to-sky-500 inline-block text-transparent bg-clip-text">
+          Gestionar preguntas
+        </h1>
+
+        <div class="flex items-center gap-2">
+          <button onclick="cerrarSesion()"
+            class="group flex items-center justify-start w-11 h-11 bg-red-600 rounded-lg cursor-pointer relative overflow-hidden transition-all duration-200 shadow-lg hover:w-32 hover:rounded-lg active:translate-x-1 active:translate-y-1">
+            <div
+              class="flex items-center justify-center w-full transition-all duration-300 group-hover:justify-start group-hover:px-3">
+              <svg class="w-4 h-4" viewBox="0 0 512 512" fill="white">
+                <path
+                  d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z">
+                </path>
+              </svg>
+            </div>
+            <div
+              class="absolute right-5 transform translate-x-full opacity-0 text-white text-lg font-semibold transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
+              Cerrar
+            </div>
+          </button>
+
+          <button id="toggleDark" class="w-11 h-11 p-2 rounded-lg shadow-lg bg-gray-200 dark:bg-gray-700">
+            🌓
+          </button>
+
+          <button onclick="volverIncio()"
+            class="w-11 h-11 text-lg p-2 rounded-lg shadow-lg bg-gray-300 dark:bg-gray-700">
+            🏠
+          </button>
+        </div>
+      </div>
+
+      <!-- Selector de evaluación -->
+      <div class="mb-6">
+        <label for="evaluacion-select" class="block text-lg font-medium text-gray-800 mb-2 dark:text-gray-200">Seleccionar
+          Evaluación</label>
+        <select id="evaluacion-select"
+          class="border rounded px-3 py-2 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 dark:bg-gray-700 dark:border-none">
+          <option value="1">Evaluación 1 - Ofimática</option>
+          <option value="2">Evaluación 2 - HTML y CSS</option>
+          <option value="3">Evaluación 3 - Mantenimiento de PC</option>
+        </select>
+      </div>
+
+      <!-- Lista de preguntas -->
+      <div id="lista-preguntas" class="mb-10 space-y-4"></div>
+
+      <!-- Formulario para añadir nueva pregunta -->
+      <div class="bg-white p-6 rounded shadow-md dark:bg-gray-800">
+        <h2 class="text-xl font-semibold text-sky-500 mb-4 dark:text-sky-400">Agregar nueva pregunta</h2>
+        <form id="form-nueva-pregunta" class="space-y-4">
+          <div>
+            <label class="block font-medium mb-1">Texto de la pregunta</label>
+            <input type="text" id="texto-pregunta"
+              class="w-full border rounded px-3 py-2 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 dark:bg-gray-700 dark:border-none"
+              required />
+          </div>
+
+          <div id="opciones-container" class="space-y-2"></div>
+
+          <button type="submit" class="bg-sky-500 hover:bg-sky-600 dark:bg-sky-600 dark:hover:bg-sky-700 font-semibold text-white px-4 py-2 rounded-md transition duration-200">
+            Agregar Pregunta
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal para editar pregunta -->
+  <div id="modal-editar" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg dark:bg-gray-800">
+      <h2 class="text-xl font-semibold text-sky-500 mb-4 dark:text-sky-400">Editar Pregunta</h2>
+      <form id="form-editar-pregunta" class="space-y-4">
+        <input type="hidden" id="edit-id-pregunta">
+        <div>
+          <label class="block font-medium mb-1">Texto de la pregunta</label>
+          <input type="text" id="edit-texto-pregunta"
+            class="w-full border rounded px-3 py-2 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 dark:bg-gray-700 dark:border-none"
+            required />
+        </div>
+        <div id="edit-opciones-container" class="space-y-2"></div>
+        <div class="flex justify-end gap-3">
+          <button type="button" onclick="cerrarModal()"
+            class="px-4 py-2 rounded-md bg-red-500 hover:bg-red-600 font-semibold text-white">Cancelar</button>
+          <button type="submit"
+            class="px-4 py-2 rounded-md bg-sky-500 hover:bg-sky-600 font-semibold text-white">Guardar cambios</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</body>
+
+<script>
+  const token = localStorage.getItem('token');
+  let idEvaluacion = parseInt(document.getElementById('evaluacion-select').value);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    generarCamposOpciones();
+    cargarPreguntas();
+  });
+
+  document.getElementById('evaluacion-select').addEventListener('change', () => {
+    idEvaluacion = parseInt(document.getElementById('evaluacion-select').value);
+    cargarPreguntas();
+  });
+
+  function generarCamposOpciones() {
+    const contenedor = document.getElementById('opciones-container');
+    contenedor.innerHTML = '';
+    for (let i = 0; i < 4; i++) {
+      contenedor.innerHTML += `
+          <div class="flex items-center gap-2">
+            <input type="text" class="opcion-texto w-full border rounded dark:bg-gray-700 dark:border-none px-3 py-1 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500" placeholder="Opción ${i + 1}" required />
+            <label class="flex items-center gap-1 dark:text-gray-200">
+              <input type="radio" name="correcta" value="${i}" required />
+              Correcta
+            </label>
+          </div>
+        `;
+    }
+  }
+
+  async function cargarPreguntas() {
+    const res = await fetch(`http://localhost:5000/api/evaluaciones/${idEvaluacion}`, {
+      headers: { Authorization: 'Bearer ' + token }
+    });
+    const preguntas = await res.json();
+    const contenedor = document.getElementById('lista-preguntas');
+    contenedor.innerHTML = '';
+    preguntas.forEach(p => {
+      const div = document.createElement('div');
+      div.className = 'bg-white p-4 rounded shadow dark:bg-gray-800';
+      div.innerHTML = `
+  <div class="flex justify-between items-center">
+    <h3 class="text-lg font-semibold text-sky-500 dark:text-sky-400">${p.texto}</h3>
+    <div class="flex gap-2">
+      <button onclick="editarPregunta(${p.id_pregunta})" class="text-sky-600 dark:text-sky-400 hover:underline">Editar</button>
+      <button onclick="eliminarPregunta(${p.id_pregunta})" class="text-red-600 dark:text-red-400 hover:underline">Eliminar</button>
+    </div>
+  </div>
+`;
+
+      const ul = document.createElement('ul');
+      ul.className = 'list-disc ml-6 mt-2';
+
+      p.opciones.forEach(o => {
+        const li = document.createElement('li');
+        li.textContent = o.texto; // <-- textContent evita interpretar HTML
+        li.className ='dark:text-gray-200';
+
+        if (o.es_correcta) {
+          const span = document.createElement('span');
+          span.textContent = ' (correcta)';
+          span.className = 'text-green-600';
+          li.appendChild(span);
+        }
+
+        ul.appendChild(li);
+      });
+
+      div.appendChild(ul);
+
+      contenedor.appendChild(div);
+    });
+  }
+
+  document.getElementById('form-nueva-pregunta').addEventListener('submit', async e => {
+    e.preventDefault();
+
+    const texto = document.getElementById('texto-pregunta').value;
+    const textosOpciones = [...document.querySelectorAll('.opcion-texto')].map(o => o.value);
+    const correctaIndex = parseInt(document.querySelector('input[name="correcta"]:checked').value);
+
+    const opciones = textosOpciones.map((texto, i) => ({ texto, es_correcta: i === correctaIndex }));
+
+    const res = await fetch(`http://localhost:5000/api/admin/evaluaciones/${idEvaluacion}/preguntas`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token
+      },
+      body: JSON.stringify({ texto, opciones })
+    });
+
+    const data = await res.json();
+    if (res.ok) {
+      alert('✅ Pregunta añadida correctamente');
+      cargarPreguntas();
+      e.target.reset();
+    } else {
+      alert('❌ Error: ' + data.error);
+    }
+  });
+
+  async function eliminarPregunta(id_pregunta) {
+    if (!confirm('¿Estás seguro de eliminar esta pregunta?')) return;
+
+    const res = await fetch(`http://localhost:5000/api/evaluaciones/preguntas/${id_pregunta}`, {
+      method: 'DELETE',
+      headers: { Authorization: 'Bearer ' + token }
+    });
+
+
+    const data = await res.json();
+    if (res.ok) {
+      alert('✅ Pregunta eliminada');
+      cargarPreguntas();
+    } else {
+      alert('❌ Error: ' + data.error);
+    }
+  }
+
+  async function editarPregunta(id_pregunta) {
+    const res = await fetch(`http://localhost:5000/api/admin/preguntas/${id_pregunta}`, {
+      headers: { Authorization: 'Bearer ' + token }
+    });
+    const pregunta = await res.json();
+
+    document.getElementById('edit-id-pregunta').value = id_pregunta;
+    document.getElementById('edit-texto-pregunta').value = pregunta.texto;
+
+    const contenedor = document.getElementById('edit-opciones-container');
+    contenedor.innerHTML = '';
+
+    pregunta.opciones.forEach((op, i) => {
+      contenedor.innerHTML += `
+      <div class="flex items-center gap-2">
+        <input type="text" class="edit-opcion-texto w-full dark:bg-gray-700 dark:border-none dark:text-gray-200 border rounded px-3 py-1 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500" value="${op.texto}" data-id="${op.id_opcion}" required />
+        <label class="flex items-center gap-1">
+          <input type="radio" name="edit-correcta" value="${i}" ${op.es_correcta ? 'checked' : ''} />
+          Correcta
+        </label>
+      </div>
+  `;
+    });
+
+
+    document.getElementById('modal-editar').classList.remove('hidden');
+  }
+
+  function cerrarModal() {
+    document.getElementById('modal-editar').classList.add('hidden');
+  }
+
+  document.getElementById('form-editar-pregunta').addEventListener('submit', async e => {
+    e.preventDefault();
+
+    const id = document.getElementById('edit-id-pregunta').value;
+    const texto = document.getElementById('edit-texto-pregunta').value;
+    const textosOpciones = [...document.querySelectorAll('.edit-opcion-texto')].map(o => ({
+      texto: o.value,
+      id_opcion: o.dataset.id
+    }));
+    const correctaIndex = parseInt(document.querySelector('input[name="edit-correcta"]:checked').value);
+
+    const opciones = textosOpciones.map((op, i) => ({
+      texto: op.texto,
+      id_opcion: op.id_opcion,
+      es_correcta: i === correctaIndex
+    }));
+
+    const res = await fetch(`http://localhost:5000/api/admin/preguntas/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token
+      },
+      body: JSON.stringify({ texto, opciones })
+    });
+
+    const data = await res.json();
+    if (res.ok) {
+      alert('✅ Pregunta actualizada');
+      cerrarModal();
+      cargarPreguntas();
+    } else {
+      alert('❌ Error: ' + data.error);
+    }
+  });
+
+  const toggle = document.getElementById('toggleDark');
+  const html = document.documentElement;
+
+  toggle.addEventListener('click', () => {
+    html.classList.toggle('dark');
+    localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+  });
+
+  // Establecer el tema al cargar
+  if (
+    localStorage.theme === 'dark' ||
+    (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+  ) {
+    document.documentElement.classList.add('dark');
+  } else {
+    document.documentElement.classList.remove('dark');
+  }
+
+  function volverIncio() {
+    window.location.href = '/Front-End/Pags-Admin/PanelAdmin.html';
+  }
+
+
+  function cerrarSesion() {
+    localStorage.removeItem('token');
+    window.location.href = '/Front-End/index.html';
+  }
+</script>
+
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <title>Curso 3</title>
+</head>
+
+<body class="bg-gray-50 text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
+
+    <button id="toggleDark"
+        class="fixed top-10 right-20 w-11 h-11 p-2 rounded-lg shadow-lg bg-gray-300 dark:bg-gray-700">
+        🌓
+    </button>
+
+    <button onclick="volverIncio()" class="fixed top-10 right-6 w-11 h-11 text-lg p-2 rounded-lg shadow-lg bg-gray-300 dark:bg-gray-700">
+        🏠
+    </button>
+
+    <div class="px-[5%] py-10 md:py-12 lg:py-14">
+
+        <div class="container mx-auto">
+            <div class="mb-8 flex flex-col gap-6 md:mb-12">
+                <div class="relative">
+                    <div class="grid grid-cols-1 md:grid-cols-2 md:gap-x-4">
+                        <div>
+                            <button type="button" aria-haspopup="dialog" aria-expanded="false"
+                                aria-controls="radix-:Rp:" data-state="closed" class="block size-full">
+                                <div class="h-full">
+                                    <img src="images/curso3-img1.jpg"
+                                         class="aspect-[5/4] size-full object-cover rounded-md shadow-xl" />
+                                </div>
+                            </button>
+                        </div>
+                        <div class="hidden md:grid md:grid-cols-2 md:gap-4">
+                            <button type="button" aria-haspopup="dialog" aria-expanded="false"
+                                aria-controls="radix-:Rp:" data-state="closed" class="block w-full">
+                                <div>
+                                    <img src="images/curso3-img2.webp"
+                                         class="aspect-[5/4] size-full object-cover rounded-md shadow-md" />
+                                </div>
+                            </button><button type="button" aria-haspopup="dialog" aria-expanded="false"
+                                aria-controls="radix-:Rp:" data-state="closed" class="block w-full">
+                                <div>
+                                    <img src="images/curso3-img3.jpg"
+                                        class="aspect-[5/4] size-full object-cover rounded-md shadow-md" />
+                                </div>
+                            </button><button type="button" aria-haspopup="dialog" aria-expanded="false"
+                                aria-controls="radix-:Rp:" data-state="closed" class="block w-full">
+                                <div>
+                                    <img src="images/curso3-img4.jpg"
+                                        class="aspect-[5/4] size-full object-cover rounded-md shadow-md" />
+                                </div>
+                            </button><button type="button" aria-haspopup="dialog" aria-expanded="false"
+                                aria-controls="radix-:Rp:" data-state="closed" class="block w-full">
+                                <div>
+                                    <img src="images/curso3-img5.jpg"
+                                        class="aspect-[5/4] size-full object-cover rounded-md shadow-md" />
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="grid grid-cols-1 gap-y-8 md:grid-cols-[1fr_16rem] md:gap-x-12 md:gap-y-10 lg:gap-12 xl:grid-cols-[1fr_0.5fr] xl:gap-x-20">
+                <div>
+                    <h1
+                        class="hidden text-3xl leading-[1.2] font-bold md:mb-8 md:block md:text-4xl lg:text-5xl pb-3 bg-gradient-to-r from-sky-500 via-sky-600 to-sky-500 inline-block text-transparent bg-clip-text">
+                        Curso 3 - Mantenimiento de computadores
+                    </h1>
+                    <p>
+                        Este curso busca capacitar en habilidades básicas de reparación, configuración y mantenimiento de equipos, con miras al empleo o autoempleo.
+                    </p>
+                    <ul class="mt-4 mb-6 list-inside list-disc md:mb-8 dark:text-gray-200">
+                        <li class="py-0.5 pl-1.5 first:pt-0 last:pb-0">
+                            Identificación de hardware y componentes.
+                        </li>
+                        <li class="py-0.5 pl-1.5 first:pt-0 last:pb-0">
+                            Instalación de sistemas operativos.
+                        </li>
+                        <li class="py-0.5 pl-1.5 first:pt-0 last:pb-0">
+                            Instalación de software.
+                        </li>
+                    </ul>
+                    
+                </div>
+
+                <div class="order-first md:order-none">
+                    
+
+                    <div class="mt-8 mb-4 flex flex-col gap-y-4">
+                        <a href="curso3-cont.html" class="w-full">
+                            <button
+                                class="w-full bg-sky-500 hover:bg-sky-600 text-white font-semibold py-2 rounded-md transition duration-200">
+                                Tomar curso
+                            </button>
+                        </a>
+
+
+                        <a href="evaluacion3.html" class="w-full">
+                            <button
+                                class="w-full text-sky-500 hover:text-white border border-sky-500 hover:bg-sky-300 hover:border-sky-300 py-2 font-semibold rounded-md transition duration-200">
+                                Tomar evaluación
+                            </button>
+                        </a>
+
+                        <a href="tutorias.html" class="w-full">
+                            <button
+                                class="w-full text-sky-500 hover:text-white border border-sky-500 hover:bg-sky-300 hover:border-sky-300 py-2 font-semibold rounded-md transition duration-200">
+                                Solicitar tutoría
+                            </button>
+                        </a>
+
+                        <a href="cursos.html" class="w-full">
+                            <button
+                                class="w-full text-red-500 hover:text-white border border-red-500 hover:bg-red-500 py-2 font-semibold rounded-md transition duration-200">
+                                Salir del curso
+                            </button>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    const toggle = document.getElementById('toggleDark');
+    const html = document.documentElement;
+
+    toggle.addEventListener('click', () => {
+        html.classList.toggle('dark');
+        localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+    });
+
+    // Establecer el tema al cargar
+    if (
+        localStorage.theme === 'dark' ||
+        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark');
+    }
+
+    function volverIncio() {
+        window.location.href = 'inicio.html';
+    }
+</script>
+
+</html>

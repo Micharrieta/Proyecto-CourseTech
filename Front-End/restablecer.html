@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <title>Reestablecer Contraseña</title>
+</head>
+
+<body class="w-screen min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
+    <section id="login" class="w-full min-h-screen relative overflow-hidden">
+
+        <img src="./images/fondo-login.png" alt="fondo decorativo"
+            class="absolute bottom-0 left-0 w-full h-full object-cover object-bottom z-0 pointer-events-none" />
+
+        <div class="grid min-h-screen grid-cols-1 lg:grid-cols-2 relative z-10">
+            <div class="relative flex items-center justify-center px-[5vw] py-12 h-full bg-white/70 backdrop-blur-md dark:bg-gray-900">
+
+                <button id="toggleDark"
+                    class="fixed top-4 left-4 w-11 h-11 p-2 rounded-lg shadow-lg bg-gray-300 dark:bg-gray-700">
+                    🌓
+                </button>
+
+                <div class="relative z-10 mx-auto w-full max-w-sm">
+                    <div class="mb-6 text-center md:mb-8">
+                        <h1 class="text-7xl font-bold leading-tight md:text-6xl">
+                            Reestablecer
+                            <span
+                                class="py-3 bg-gradient-to-r from-sky-500 via-sky-600 to-sky-500 inline-block text-transparent bg-clip-text">
+                                Contraseña
+                            </span>
+                        </h1>
+                        <p class="text-base md:text-lg mt-2">¡Reestablece tu contraseña!</p>
+                    </div>
+                    <form id="resetForm" class="space-y-5">
+                        <div class="w-full">
+
+                            <div class="flex justify-between mb-1">
+                                <label for="password" class="font-medium">Nueva contraseña*</label>
+                            </div>
+
+                            <input type="password" id="password" required
+                                class="w-full rounded-lg dark:text-black border border-gray-300 px-3 py-2 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500" />
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-sky-500 hover:bg-sky-600 text-white font-semibold py-2 rounded-lg transition duration-200">
+                            Cambiar Contraseña
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="relative hidden lg:flex justify-center items-center">
+                <img src="./images/restablecer.png" alt="decoración"
+                    class="w-4/5 max-w-[1000px] object-contain p-10 z-10" />
+            </div>
+        </div>
+    </section>
+</body>
+
+<script>
+    document.getElementById('resetForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const nuevaContrasena = document.getElementById('password').value;
+        const params = new URLSearchParams(window.location.search);
+        const token = params.get('token');
+
+        const res = await fetch('http://localhost:5000/api/auth/restablecer', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token, nuevaContrasena })
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+            alert('Contraseña actualizada con éxito');
+            window.location.href = 'login.html';
+        } else {
+            alert('Error: ' + data.error);
+        }
+    });
+
+    const toggle = document.getElementById('toggleDark');
+    const html = document.documentElement;
+
+    toggle.addEventListener('click', () => {
+        html.classList.toggle('dark');
+        localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+    });
+
+    // Establecer el tema al cargar
+    if (
+        localStorage.theme === 'dark' ||
+        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark');
+    }
+
+</script>
+
+</html>

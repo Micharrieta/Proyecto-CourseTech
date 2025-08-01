@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <title>Iniciar Sesión</title>
+</head>
+
+<body
+    class="w-screen min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
+
+
+
+    <section id="login" class="w-full min-h-screen relative overflow-hidden">
+
+
+
+        <img src="./images/fondo-login.png" alt="fondo decorativo"
+            class="absolute bottom-0 left-0 w-full h-full object-cover object-bottom z-0 pointer-events-none" />
+
+
+        <div class="grid min-h-screen grid-cols-1 lg:grid-cols-2 relative z-10">
+
+
+            <div
+                class="relative flex items-center justify-center px-[5%] py-12 h-full bg-white/70 backdrop-blur-md dark:bg-gray-900">
+                <div class="relative z-10 mx-auto w-full max-w-lg dark:bg-gray-800 rounded-lg p-10">
+                    <div class="mb-6 text-center md:mb-8">
+                        <h1 class="text-7xl font-bold leading-tight md:text-6xl">
+                            Iniciar
+                            <span
+                                class="py-3 bg-gradient-to-r from-sky-500 via-sky-600 to-sky-500 inline-block text-transparent bg-clip-text">
+                                Sesión
+                            </span>
+                        </h1>
+                        <p class="text-base md:text-lg mt-2 dark:text-gray-300">¡Ingresa y empieza a aprender!</p>
+                    </div>
+
+                    <button id="toggleDark"
+                        class="fixed top-4 left-4 w-11 h-11 p-2 rounded-lg shadow-lg bg-gray-300 dark:bg-gray-700">
+                        🌓
+                    </button>
+
+                    
+
+
+                    <form id="loginForm" class="space-y-5">
+
+                        <div class="w-full">
+                            <label for="email" class="block mb-1 font-medium">Email*</label>
+                            <input type="email" id="email" required
+                                class="w-full rounded-lg border border-gray-300 px-3 py-2 dark:text-black focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500" />
+                        </div>
+
+                        <div class="w-full">
+                            <div class="flex justify-between mb-1">
+                                <label for="password" class="font-medium">Contraseña*</label>
+                                <a href="RecuperarPass.html" class="text-sm underline hover:text-sky-500">¿Olvidaste tu
+                                    contraseña?</a>
+                            </div>
+                            <input type="password" id="password" required
+                                class="w-full rounded-lg border border-gray-300 px-3 py-2 dark:text-black focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500" />
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-sky-500 hover:bg-sky-600 text-white font-semibold py-2 rounded-lg transition duration-200">
+                            Iniciar sesión
+                        </button>
+                    </form>
+
+                    <div class="mt-5 text-center text-sm">
+                        ¿No tienes una cuenta?
+                        <a href="signup.html" class="underline hover:text-sky-500">Registrarse</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="relative hidden lg:block">
+                <img src="./images/image-login.png" alt="decoración"
+                    class="absolute inset-0 w-full h-full object-contain p-10 z-10" />
+            </div>
+        </div>
+    </section>
+</body>
+
+
+
+<script>
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const contrasena = document.getElementById('password').value;
+
+        const res = await fetch('http://localhost:5000/api/auth/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, contrasena })
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+            const token = data.token;
+            localStorage.setItem('token', token);
+
+            const decoded = jwt_decode(token);
+            const rol = decoded.rol;
+
+            // Redirigir según el rol
+            if (rol === 1) {
+                window.location.href = 'Pags-Admin/PanelAdmin.html'; // Página del panel de administrador
+            } else if (rol === 2) {
+                window.location.href = 'Pags-Tutor/PanelTutor.html'; // Opcional: redirigir a panel de tutor
+            } else {
+                window.location.href = 'inicio.html'; // Usuario común
+            }
+
+        } else {
+            alert('❌ Error: ' + data.error);
+        }
+    });
+
+    const toggle = document.getElementById('toggleDark');
+    const html = document.documentElement;
+
+    toggle.addEventListener('click', () => {
+        html.classList.toggle('dark');
+        localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+    });
+
+    // Establecer el tema al cargar
+    if (
+        localStorage.theme === 'dark' ||
+        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark');
+    }
+</script>
+
+
+</html>

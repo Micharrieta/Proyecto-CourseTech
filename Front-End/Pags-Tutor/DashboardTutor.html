@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Estadísticas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+</head>
+
+<body class="bg-gray-50 text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
+
+    <section id="titulo-dash" class="px-[5%] py-6 md:py-8 lg:py-10 mx-auto">
+        <div class="container mx-auto">
+            <div class="flex justify-between items-center flex-wrap gap-4">
+                <h1
+                    class="py-2 bg-gradient-to-r from-sky-500 via-sky-600 to-sky-500 inline-block text-transparent bg-clip-text mb-5 text-4xl font-bold md:mb-6 md:text-5xl lg:text-6xl">
+                    Dashboard de tutorías
+                </h1>
+
+                <div class="flex items-center gap-2">
+                    <button onclick="cerrarSesion()"
+                        class="group flex items-center justify-start w-11 h-11 bg-red-600 rounded-lg cursor-pointer relative overflow-hidden transition-all duration-200 shadow-lg hover:w-32 hover:rounded-lg active:translate-x-1 active:translate-y-1">
+                        <div
+                            class="flex items-center justify-center w-full transition-all duration-300 group-hover:justify-start group-hover:px-3">
+                            <svg class="w-4 h-4" viewBox="0 0 512 512" fill="white">
+                                <path
+                                    d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div
+                            class="absolute right-5 transform translate-x-full opacity-0 text-white text-lg font-semibold transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
+                            Cerrar
+                        </div>
+                    </button>
+
+                    <button id="toggleDark" class="w-11 h-11 p-2 rounded-lg shadow-lg bg-gray-200 dark:bg-gray-700">
+                        🌓
+                    </button>
+
+                    <button onclick="volverIncio()"
+                        class="w-11 h-11 text-lg p-2 rounded-lg shadow-lg bg-gray-300 dark:bg-gray-700">
+                        🏠
+                    </button>
+                </div>
+            </div>
+            <p class="md:text-md">
+                Desde aquí podrás ver todos las estadisticas relacionadas a las tutorías.
+            </p>
+        </div>
+    </section>
+
+    <section id="cont-inicio" class="px-[5%] pb-[5%]">
+        <div class="container mx-auto">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10" id="tarjetas-estadisticas"></div>
+
+
+            <div class="bg-white p-4 rounded-lg shadow dark:bg-gray-800">
+                <h3 class="text-xl font-semibold text-sky-600 text-center mb-4 dark:text-sky-400">Solicitudes de tutoría
+                    por curso </h3>
+                <canvas class="" id="graficoSolicitudes"></canvas>
+            </div>
+
+    </section>
+
+</body>
+
+<script>
+
+    const token = localStorage.getItem('token');
+
+    document.addEventListener('DOMContentLoaded', async () => {
+        try {
+            const res = await fetch('http://localhost:5000/api/tutor/estadisticas', {
+                headers: {
+                    Authorization: 'Bearer ' + token
+                }
+            });
+            const data = await res.json();
+
+            mostrarTarjetas(data);
+            mostrarGrafico(data.solicitudesPorCurso);
+
+        } catch (err) {
+            console.error('❌ Error al cargar estadísticas:', err);
+            alert('No se pudieron cargar las estadísticas');
+        }
+    });
+
+    function mostrarTarjetas(data) {
+        const contenedor = document.getElementById('tarjetas-estadisticas');
+        contenedor.innerHTML = '';
+
+        const estadisticas = [
+            { titulo: 'Solicitudes de tutoría', valor: data.totalSolicitudes },
+            { titulo: 'Tutorías asignadas', valor: data.totalAsignadas },
+            { titulo: 'Tutorías sin asignar', valor: data.totalNasignadas }
+        ];
+
+        estadisticas.forEach(est => {
+            const div = document.createElement('div');
+            div.className = 'bg-white p-5 rounded-lg shadow text-center dark:bg-gray-800';
+            div.innerHTML = `
+                <h3 class="text-lg text-gray-700 font-medium dark:text-gray-200">${est.titulo}</h3>
+                <p class="text-3xl font-bold text-sky-600 dark:text-sky-400 mt-2">${est.valor}</p>
+                `;
+            contenedor.appendChild(div);
+        });
+    }
+
+    function mostrarGrafico(solicitudesPorCurso) {
+        const ctx = document.getElementById('graficoSolicitudes').getContext('2d');
+        const isDarkMode = document.documentElement.classList.contains('dark');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: solicitudesPorCurso.map(e => e.curso),
+                datasets: [{
+                    label: 'Solicitudes por curso',
+                    data: solicitudesPorCurso.map(e => e.total),
+                    backgroundColor: ['#0ea5e9', '#FFBF00', '#22c55e']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false,
+                        labels: {
+                            color: isDarkMode ? '#90a1b9' : '#90a1b8' // color del texto de la leyenda
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: isDarkMode ? '#90a1b9' : '#90a1b9', // color etiquetas X
+                            maxRotation: 0,
+                            minRotation: 0,
+                            font: {
+                                size: 12
+                            }
+                        }, grid: {
+                            color: isDarkMode ? '#90a1b9' : '#90a1b9' // líneas verticales del grid
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1,
+                            color: isDarkMode ? '#90a1b9' : '#90a1b9' // color etiquetas Y
+                        },
+                        grid: {
+                            color: isDarkMode ? '#90a1b9' : '#90a1b9' // líneas horizontales del grid
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    function cerrarSesion() {
+        localStorage.removeItem('token');
+        window.location.href = '/Front-End/index.html';
+    }
+    const toggle = document.getElementById('toggleDark');
+    const html = document.documentElement;
+
+    toggle.addEventListener('click', () => {
+        html.classList.toggle('dark');
+        localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+    });
+
+    // Establecer el tema al cargar
+    if (
+        localStorage.theme === 'dark' ||
+        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark');
+    }
+
+    function volverIncio() {
+        window.location.href = '/Front-End/Pags-Tutor/PanelTutor.html';
+    }
+</script>
+
+</html>

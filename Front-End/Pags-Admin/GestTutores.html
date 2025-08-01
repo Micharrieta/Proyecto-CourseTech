@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <title>Gestionar tutores</title>
+</head>
+
+<body class="bg-gray-50 text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
+    <section id="titulo" class="px-[5%] py-6 md:py-8 lg:py-10 mx-auto">
+        <div class="container mx-auto">
+            <div class="flex justify-between items-center flex-wrap gap-4">
+                <h1
+                    class="mb-5 text-4xl font-bold md:mb-6 md:text-5xl lg:text-6xl py-2 bg-gradient-to-r from-sky-500 via-sky-600 to-sky-500 inline-block text-transparent bg-clip-text">
+                    Gestionar tutores
+                </h1>
+
+                <div class="flex items-center gap-2">
+
+                    <button onclick="cerrarSesion()"
+                        class="group flex items-center justify-start w-11 h-11 bg-red-600 rounded-lg cursor-pointer relative overflow-hidden transition-all duration-200 shadow-lg hover:w-32 hover:rounded-lg active:translate-x-1 active:translate-y-1">
+                        <div
+                            class="flex items-center justify-center w-full transition-all duration-300 group-hover:justify-start group-hover:px-3">
+                            <svg class="w-4 h-4" viewBox="0 0 512 512" fill="white">
+                                <path
+                                    d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div
+                            class="absolute right-5 transform translate-x-full opacity-0 text-white text-lg font-semibold transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
+                            Cerrar
+                        </div>
+                    </button>
+
+                    <button id="toggleDark" class="w-11 h-11 p-2 rounded-lg shadow-lg bg-gray-200 dark:bg-gray-700">
+                        🌓
+                    </button>
+
+                    <button onclick="volverIncio()"
+                        class="w-11 h-11 text-lg p-2 rounded-lg shadow-lg bg-gray-300 dark:bg-gray-700">
+                        🏠
+                    </button>
+
+                </div>
+
+            </div>
+            <p class="md:text-md">
+                Desde aquí podrás convertir a cualquier usuario en tutor.
+            </p>
+        </div>
+    </section>
+
+
+    <section id="usuarios" class="px-[5%] py-2 md:py-2 lg:py-2 ">
+        <div class="container mx-auto">
+            <h2
+                class="dark:text-sky-400 bg-gradient-to-r from-sky-500 via-sky-600 to-sky-500 inline-block text-transparent bg-clip-text text-2xl font-bold mb-4">
+                Usuarios registrados</h2>
+            <table id="tabla-usuarios" class="w-full table-auto border-collapse ">
+                <thead class="bg-sky-100 dark:bg-gray-700">
+                    <tr>
+                        <th class="border border-sky-300 text-sky-600 px-2 py-1 dark:border-white dark:text-white">ID</th>
+                        <th class="border border-sky-300 text-sky-600 px-2 py-1 dark:border-white dark:text-white">Nombre</th>
+                        <th class="border border-sky-300 text-sky-600 px-2 py-1 dark:border-white dark:text-white">Apellidos</th>
+                        <th class="border border-sky-300 text-sky-600 px-2 py-1 dark:border-white dark:text-white">Celular</th>
+                        <th class="border border-sky-300 text-sky-600 px-2 py-1 dark:border-white dark:text-white">Email</th>
+                        <th class="border border-sky-300 text-sky-600 px-2 py-1 dark:border-white dark:text-white">Rol</th>
+                        <th class="border border-sky-300 text-sky-600 px-2 py-1 dark:border-white dark:text-white">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="usuarios-body" class="dark:text-gray-200">
+                    <!-- Aquí se cargan los usuarios de la db-->
+                </tbody>
+            </table>
+
+        </div>
+    </section>
+
+
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        const token = localStorage.getItem('token');
+        const res = await fetch('http://localhost:5000/api/admin/usuarios', {
+            headers: { Authorization: 'Bearer ' + token }
+        });
+        const usuarios = await res.json();
+
+        const tbody = document.getElementById('usuarios-body');
+
+        usuarios.forEach(user => {
+            const tr = document.createElement('tr');
+
+            const nombreRol = {
+                1: 'Admin',
+                2: 'Tutor',
+                3: 'Estudiante'
+            }[parseInt(user.id_rol)] || 'Desconocido';
+
+            if (parseInt(user.id_rol) === 2) {
+                tr.innerHTML = `
+                    <td class="border px-2 py-1">${user.id_usuario}</td>
+                    <td class="border px-2 py-1">${user.nombres}</td>
+                    <td class="border px-2 py-1">${user.apellidos}</td>
+                    <td class="border px-2 py-1">${user.celular}</td>
+                    <td class="border px-2 py-1">${user.email}</td>
+                    <td class="border px-2 py-1">${nombreRol}</td>
+                    <td class="border px-2 py-1 text-green-600 dark:text-green-400 font-medium">Tutor</td>
+                `;
+            } else {
+                tr.innerHTML = `
+                    <td class="border px-2 py-1">${user.id_usuario}</td>
+                    <td class="border px-2 py-1">${user.nombres}</td>
+                    <td class="border px-2 py-1">${user.apellidos}</td>
+                    <td class="border px-2 py-1">${user.celular}</td>
+                    <td class="border px-2 py-1">${user.email}</td>
+                    <td class="border px-2 py-1">${nombreRol}</td>
+                    <td class="border px-2 py-1">
+                        <button class="text-orange-600 dark:text-orange-400 hover:underline" onclick="transformarEnTutor(${user.id_usuario})">Cambiar a tutor</button>
+
+                    </td>
+                `;
+            }
+
+            tbody.appendChild(tr);
+        });
+
+    });
+
+    async function transformarEnTutor(id) {
+        const token = localStorage.getItem('token');
+
+        const res = await fetch(`http://localhost:5000/api/admin/usuarios/${id}/tutor`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            }
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+            alert('✅ Usuario actualizado al rol de tutor');
+            location.reload();
+        } else {
+            alert('❌ Error: ' + data.error);
+        }
+    }
+
+
+    function cerrarSesion() {
+        localStorage.removeItem('token');
+        window.location.href = '/Front-End/index.html';
+    }
+
+    const toggle = document.getElementById('toggleDark');
+    const html = document.documentElement;
+
+    toggle.addEventListener('click', () => {
+        html.classList.toggle('dark');
+        localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+    });
+
+    // Establecer el tema al cargar
+    if (
+        localStorage.theme === 'dark' ||
+        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark');
+    }
+
+    function volverIncio() {
+        window.location.href = '/Front-End/Pags-Admin/PanelAdmin.html';
+    }
+</script>
+
+</html>

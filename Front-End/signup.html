@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <title>Registrarse</title>
+</head>
+
+<body class="w-screen min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
+
+    <section id="registro" class="w-full min-h-screen relative overflow-hidden">
+
+        <img src="./images/fondo-sign.png" alt="fondo decorativo"
+            class="absolute bottom-0 left-0 w-full h-full object-cover object-bottom z-0 pointer-events-none" />
+
+
+        <div class="grid min-h-screen grid-cols-1 lg:grid-cols-2 relative z-10">
+
+
+            <div class="relative flex items-center justify-center px-[5vw] py-12 h-full bg-white/70 backdrop-blur-md dark:bg-gray-900">
+                <div class="relative z-10 mx-auto w-full max-w-lg dark:bg-gray-800 rounded-lg p-10">
+
+                    <button id="toggleDark"
+                        class="fixed top-4 left-4 w-11 h-11 p-2 rounded-lg shadow-lg bg-gray-300 dark:bg-gray-700">
+                        🌓
+                    </button>
+
+                    <div class="mb-6 text-center md:mb-8">
+                        <h1
+                            class="text-5xl font-bold md:text-7xl lg:text-6xl mb-4 py-3 bg-gradient-to-r from-sky-500 via-sky-600 to-sky-500 inline-block text-transparent bg-clip-text">
+                            Registrarse</h1>
+                        <p class="text-lg">¡Crea tu cuenta!</p>
+                    </div>
+
+
+                    <form id="registerForm" class="grid grid-cols-1 gap-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="mb-2 block font-medium" for="nombre">Nombres*</label>
+                                <input type="text" id="nombres" required
+                                    class="w-full dark:text-black focus:border-sky-500 border border-gray-300 bg-white min-h-11 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-500" />
+                            </div>
+                            <div>
+                                <label class="mb-2 block font-medium" for="apellidos">Apellidos*</label>
+                                <input type="text" id="apellidos" required
+                                    class="w-full dark:text-black focus:border-sky-500 border border-gray-300 bg-white min-h-11 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-500" />
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="mb-2 block font-medium" for="celular">Celular*</label>
+                            <input type="tel" id="celular" required
+                                class="w-full dark:text-black focus:border-sky-500 border border-gray-300 bg-white min-h-11 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-500" />
+                        </div>
+                        <div>
+                            <label class="mb-2 block font-medium" for="email">Email*</label>
+                            <input type="email" id="email" required
+                                class="w-full dark:text-black focus:border-sky-500 border border-gray-300 bg-white min-h-11 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-500" />
+                        </div>
+                        <div>
+                            <label class="mb-2 block font-medium" for="password">Contraseña*</label>
+                            <input type="password" id="password" required
+                                class="w-full dark:text-black focus:border-sky-500 border border-gray-300 bg-white min-h-11 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-500" />
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-sky-500 hover:bg-sky-600 text-white font-semibold py-2 rounded-lg transition duration-200">
+                            Registrarse
+                        </button>
+                    </form>
+
+                    <div class="mt-6 text-center">
+                        <p>¿Ya tienes una cuenta?
+                            <a href="login.html" class="underline hover:text-sky-500">Iniciar Sesión</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="relative hidden lg:block">
+                <img src="./images/image-sign.png" alt="decoración"
+                    class="absolute inset-0 w-full h-full object-contain p-10 z-10" />
+            </div>
+        </div>
+    </section>
+</body>
+
+<script>
+    document.getElementById('registerForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const body = {
+            nombres: document.getElementById('nombres').value,
+            apellidos: document.getElementById('apellidos').value,
+            celular: document.getElementById('celular').value,
+            email: document.getElementById('email').value,
+            contrasena: document.getElementById('password').value
+
+        };
+
+        try {
+            const res = await fetch('http://localhost:5000/api/auth/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(body)
+            });
+
+            const data = await res.json();
+
+            if (res.ok) {
+                alert('✅ Registro exitoso');
+                window.location.href = "login.html";
+            } else {
+                alert('❌ Error: ' + data.error);
+            }
+        } catch (err) {
+            alert('❌ No se pudo conectar con la API');
+            console.error(err);
+        }
+    });
+
+    const toggle = document.getElementById('toggleDark');
+    const html = document.documentElement;
+
+    toggle.addEventListener('click', () => {
+        html.classList.toggle('dark');
+        localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+    });
+
+    // Establecer el tema al cargar
+    if (
+        localStorage.theme === 'dark' ||
+        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark');
+    }
+
+</script>
+
+</html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es" class="">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <title>Bienvendo a CourseTech</title>
+</head>
+
+<body class="bg-gray-50 text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
+
+    <section id="Navbar"
+        class="z-[999] flex w-full items-center border-b border-border-primary bg-background-primary lg:min-h-18 lg:px-[5%]">
+        <div
+            class="mx-auto size-full lg:grid lg:grid-cols-[0.375fr_1fr_0.375fr] lg:items-center lg:justify-between lg:gap-4">
+            <div class="flex min-h-16 items-center justify-between px-[5%] md:min-h-18 lg:min-h-full lg:px-0">
+                <a href="#" class="font-bold text-sky-500 text-3xl">CourseTech</a>
+                <div class="flex items-center gap-4 lg:hidden">
+
+                </div>
+            </div>
+
+            <div class="overflow-hidden px-[5%] text-center lg:flex lg:items-center lg:justify-center lg:px-0 lg:[--height-closed:auto] lg:[--height-open:auto]"
+                style="height:var(--height-closed, 0)">
+                <a href="#info-1"
+                    class="block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2 hover:text-sky-500">Inicio</a>
+                <a href="#info-2"
+                    class="block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2 hover:text-sky-500">Más
+                    Información</a>
+                <a href="signup.html"
+                    class="block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2 hover:text-sky-500">Registrarse</a>
+            </div>
+
+            <div class="hidden justify-self-end lg:block mb-5 mt-6">
+                <a href="login.html">
+                    <button
+                        class="flex justify-center gap-2 items-center mx-auto shadow-lg text-lg bg-gray-50 backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-lg  before:bg-sky-500 hover:text-gray-50 dark:text-black dark:hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-lg group">
+                        Iniciar Sesión
+                        <svg class="w-8 h-8 justify-end group-hover:rotate-90 group-hover:bg-gray-50 text-gray-50 ease-linear duration-300 rounded-full border border-gray-700 group-hover:border-none p-2 rotate-45"
+                            viewBox="0 0 16 19" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658 -0.0976311 7.68342 -0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z"
+                                class="fill-gray-800 group-hover:fill-gray-800"></path>
+                        </svg>
+                    </button>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <button id="toggleDark"
+        class="flex items-center justify-center text-sm fixed top-4 right-4 w-8 h-6 p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
+        🌓
+    </button>
+
+    <section id="info-1" class="relative px-[5%]">
+        <div class="relative z-10 container">
+            <div class="flex max-h-[60rem] min-h-svh items-center py-16 md:py-24 lg:py-28">
+                <div class="">
+                    <h1 class="font-bold mb-10 text-6xl md:text-7xl lg:text-10xl max-w dark:text-black">
+                        Empoderando a través de <p
+                            class="py-3 bg-gradient-to-r from-sky-400 via-sky-500 to-sky-600 inline-block text-transparent bg-clip-text">
+                            habilidades digitales</p>
+                    </h1>
+                    <p class="text-text-alternative md:text-md max-w-lg dark:text-black">
+                        Nuestro proyecto se dedica a proporcionar acceso a cursos de
+                        habilidades digitales para personas en situación de vulnerabilidad.
+                        Creemos que la educación es la clave para abrir nuevas oportunidades y
+                        transformar vidas.
+                    </p>
+                    <div class="mt-6 flex flex-wrap gap-4 md:mt-8">
+
+                        <a href="signup.html">
+                            <button
+                                class="text-lg w-32 h-12 rounded-lg shadow-md bg-sky-500 text-white font-semibold relative overflow-hidden group z-10 hover:text-white duration-1000">
+                                <span
+                                    class="absolute bg-sky-600 w-36 h-36 rounded-lg group-hover:scale-100 scale-0 -z-10 -left-2 -top-10 group-hover:duration-500 duration-700 origin-center transform transition-all"></span>
+                                <span
+                                    class="absolute bg-sky-800 w-36 h-36 -left-2 -top-10 rounded-lg group-hover:scale-100 scale-0 -z-10 group-hover:duration-700 duration-500 origin-center transform transition-all"></span>
+                                Registrarse
+                            </button>
+                        </a>
+
+                        <a href="login.html">
+                            <button
+                                class="text-lg w-32 h-12 rounded-lg shadow-md bg-sky-500 text-white font-semibold relative overflow-hidden group z-10 hover:text-white duration-1000">
+                                <span
+                                    class="absolute bg-sky-600 w-36 h-36 rounded-lg group-hover:scale-100 scale-0 -z-10 -left-2 -top-10 group-hover:duration-500 duration-700 origin-center transform transition-all"></span>
+                                <span
+                                    class="absolute bg-sky-800 w-36 h-36 -left-2 -top-10 rounded-lg group-hover:scale-100 scale-0 -z-10 group-hover:duration-700 duration-500 origin-center transform transition-all"></span>
+                                Iniciar Sesión
+                            </button>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="absolute inset-0 z-0">
+            <img src="images/fondo-landing.jpg" class="size-full object-cover" />
+            <div class="absolute inset-0 bg-white/60"></div>
+        </div>
+    </section>
+
+    <section id="info-2" class="px-[5%] py-16 md:py-24 lg:py-28">
+        <div class="container mx-auto">
+            <div class="flex flex-col items-center">
+                <div class="rb-12 mb-12 w-full max-w-lg text-center md:mb-18 lg:mb-20">
+                    <h2 class="rb-5 mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-6xl">
+                        Servicios de <p
+                            class="pb-3 bg-gradient-to-r from-sky-500 via-sky-600 to-sky-500 inline-block text-transparent bg-clip-text">
+                            Educación Digital</p>
+                    </h2>
+                    <p class="md:text-md mb-5">
+                        Ofrecemos una variedad de servicios diseñados para facilitar el
+                        aprendizaje digital. Nuestros programas incluyen tutorías
+                        personalizadas y recursos educativos adaptados a tus necesidades.
+                    </p>
+                </div>
+                <div
+                    class="grid grid-cols-1 items-start justify-center gap-y-12 md:grid-cols-3 md:gap-x-8 md:gap-y-16 lg:gap-x-12">
+                    <div
+                        class="flex rounded-xl w-full flex-col items-center text-center shadow-xl px-4 py-12 dark:bg-gray-800">
+                        <div class="rb-5 mb-5 md:mb-6">
+                            <img src="icons/faculty.png" class="h-36 w-36" />
+                        </div>
+
+                        <h3 class="mb-5 text-2xl font-bold md:mb-6 md:text-3xl md:leading-[1.3] lg:text-4xl">
+                            Tutorías Personalizadas para Cada Estudiante
+                        </h3>
+                        <p>Recibe atención individualizada para maximizar tu aprendizaje.</p>
+                    </div>
+                    <div
+                        class="flex rounded-xl w-full flex-col items-center text-center shadow-xl px-4 py-12 dark:bg-gray-800">
+                        <div class="rb-5 mb-5 md:mb-6">
+                            <img src="icons/icon2-landing.png" class="h-36 w-36">
+                        </div>
+                        <h3 class="mb-5 text-2xl font-bold md:mb-6 md:text-3xl md:leading-[1.3] lg:text-4xl">
+                            Recursos Educativos Diversos y Accesibles
+                        </h3>
+                        <p>Accede a materiales que se adaptan a tu ritmo.</p>
+                    </div>
+                    <div
+                        class="flex w-full rounded-xl flex-col items-center text-center shadow-xl px-4 py-12 dark:bg-gray-800">
+                        <div class="rb-5 mb-5 md:mb-6">
+                            <img src="icons/Icon3-landing.png" class="h-36 w-36" />
+                        </div>
+                        <h3 class="mb-5 text-2xl font-bold md:mb-6 md:text-3xl md:leading-[1.3] lg:text-4xl">
+                            Evaluaciones para Medir tu Progreso
+                        </h3>
+                        <p>Evalúa tus habilidades y mejora continuamente.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="info-3" class="px-[5%] py-16 md:py-24 lg:py-28">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 gap-y-12 md:grid-cols-2 md:items-center md:gap-x-12 lg:gap-x-20">
+                <div>
+                    <h1 class="rb-5 mb-5 text-4xl font-bold md:mb-6 md:text-5xl lg:text-6xl">
+                        Transformando vidas a través de la <p
+                            class="pb-3 bg-gradient-to-r from-sky-500 via-sky-600 to-sky-500 inline-block text-transparent bg-clip-text">
+                            educación digital accesible y de
+                            calidad.</p>
+                    </h1>
+                    <p class="md:text-md">
+                        Nuestro proyecto nace de la necesidad de empoderar a comunidades
+                        vulnerables mediante el acceso a habilidades digitales. Contamos con
+                        un equipo apasionado que trabaja para ofrecer cursos accesibles y de
+                        alta calidad.
+                    </p>
+                </div>
+                <div>
+                    <img src="images/elem1-landing.png" class="w-full object-cover rounded-image" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="info-4" class="px-[5%] py-16 md:py-24 lg:py-28">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 gap-y-12 md:grid-cols-2 md:items-center md:gap-x-12 lg:gap-x-20">
+
+                <div>
+                    <img src="images/tutoria.png" class="w-full rounded-image object-cover" alt="placeholder image" />
+                </div>
+
+                <div>
+                    <h1 class="rb-5 mb-5 text-4xl font-bold md:mb-6 md:text-5xl lg:text-6xl">
+                        Descubre cómo mejorar tus <p
+                            class="py-3 bg-gradient-to-r from-sky-500 via-sky-600 to-sky-500 inline-block text-transparent bg-clip-text">
+                            habilidades digitales.</p>
+                    </h1>
+                    <p class="md:text-md">
+                        Unirte a nuestro proyecto te permitirá adquirir competencias laborales
+                        esenciales en el mundo digital. Además, ganarás confianza al utilizar
+                        tecnologías que son fundamentales en el entorno actual.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer id="info-5" class="px-[5%] py-12 md:py-18 lg:py-20">
+        <div class="container mx-auto">
+            <div
+                class="grid grid-cols-1 items-start gap-x-[8vw] gap-y-12 pb-6 md:gap-y-16 md:pb-4 lg:grid-cols-[1fr_0.5fr] lg:gap-y-4 lg:pb-6">
+                <div
+                    class="grid grid-cols-1 items-start gap-x-8 gap-y-10 sm:grid-cols-3 sm:gap-x-6 sm:gap-y-12 md:gap-x-8 lg:grid-cols-4">
+
+                    <div class="flex flex-col items-start justify-start">
+                        <h2 class="mb-3 font-semibold md:mb-4">Información Útil</h2>
+                        <ul>
+                            <li class="py-2 text-sm">
+                                <a href="#" class="flex items-center gap-3">Cursos Disponibles</a>
+                            </li>
+                            <li class="py-2 text-sm">
+                                <a href="#" class="flex items-center gap-3">Evaluaciones</a>
+                            </li>
+                            <li class="py-2 text-sm">
+                                <a href="#" class="flex items-center gap-3">Foro Comunitario</a>
+                            </li>
+                            <li class="py-2 text-sm">
+                                <a href="#" class="flex items-center gap-3">Testimonios</a>
+                            </li>
+                            <li class="py-2 text-sm">
+                                <a href="#" class="flex items-center gap-3">Contacto</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-col items-start justify-start">
+                        <h2 class="mb-3 font-semibold md:mb-4">Recursos Adicionales</h2>
+                        <ul>
+                            <li class="py-2 text-sm">
+                                <a href="#" class="flex items-center gap-3">Blog</a>
+                            </li>
+                            <li class="py-2 text-sm">
+                                <a href="#" class="flex items-center gap-3">Eventos</a>
+                            </li>
+                            <li class="py-2 text-sm">
+                                <a href="#" class="flex items-center gap-3">Webinars</a>
+                            </li>
+                            <li class="py-2 text-sm">
+                                <a href="#" class="flex items-center gap-3">FAQ</a>
+                            </li>
+                            <li class="py-2 text-sm">
+                                <a href="#" class="flex items-center gap-3">Soporte Técnico</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-col items-start justify-start">
+                        <h2 class="mb-3 font-semibold md:mb-4">Conéctate con Nosotros</h2>
+                        <ul>
+                            <li class="py-2 text-sm">
+                                <a href="#" class="flex items-center gap-3">Redes Sociales</a>
+                            </li>
+                            <li class="py-2 text-sm">
+                                <a href="#" class="flex items-center gap-3">Colaboraciones</a>
+                            </li>
+                            <li class="py-2 text-sm">
+                                <a href="#" class="flex items-center gap-3">Oportunidades</a>
+                            </li>
+                            <li class="py-2 text-sm">
+                                <a href="#" class="flex items-center gap-3">Donaciones</a>
+                            </li>
+                            <li class="py-2 text-sm">
+                                <a href="#" class="flex items-center gap-3">Voluntariado</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="h-px w-full bg-black dark:bg-white"></div>
+            <div
+                class="flex flex-col-reverse items-start pt-6 pb-4 text-sm md:justify-start md:pt-8 md:pb-0 lg:flex-row lg:items-center lg:justify-between">
+
+                <div class="flex flex-col-reverse items-start md:flex-row md:gap-6 lg:items-center">
+                    <div
+                        class="grid grid-flow-row grid-cols-[max-content] justify-center gap-y-4 md:grid-flow-col md:justify-center md:gap-x-6 md:gap-y-0 lg:text-left">
+                    </div>
+                </div>
+                <div class="mb-8 flex items-center justify-center gap-3 lg:mb-0">
+                    <a href="#"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24"
+                            class="size-6" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12.001 2.002c-5.522 0-9.999 4.477-9.999 9.999 0 4.99 3.656 9.126 8.437 9.879v-6.988h-2.54v-2.891h2.54V9.798c0-2.508 1.493-3.891 3.776-3.891 1.094 0 2.24.195 2.24.195v2.459h-1.264c-1.24 0-1.628.772-1.628 1.563v1.875h2.771l-.443 2.891h-2.328v6.988C18.344 21.129 22 16.992 22 12.001c0-5.522-4.477-9.999-9.999-9.999z">
+                            </path>
+                        </svg></a><a href="#"><svg stroke="currentColor" fill="currentColor" stroke-width="0"
+                            viewBox="0 0 24 24" class="size-6" height="1em" width="1em"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M11.999 7.377a4.623 4.623 0 1 0 0 9.248 4.623 4.623 0 0 0 0-9.248zm0 7.627a3.004 3.004 0 1 1 0-6.008 3.004 3.004 0 0 1 0 6.008z">
+                            </path>
+                            <circle cx="16.806" cy="7.207" r="1.078"></circle>
+                            <path
+                                d="M20.533 6.111A4.605 4.605 0 0 0 17.9 3.479a6.606 6.606 0 0 0-2.186-.42c-.963-.042-1.268-.054-3.71-.054s-2.755 0-3.71.054a6.554 6.554 0 0 0-2.184.42 4.6 4.6 0 0 0-2.633 2.632 6.585 6.585 0 0 0-.419 2.186c-.043.962-.056 1.267-.056 3.71 0 2.442 0 2.753.056 3.71.015.748.156 1.486.419 2.187a4.61 4.61 0 0 0 2.634 2.632 6.584 6.584 0 0 0 2.185.45c.963.042 1.268.055 3.71.055s2.755 0 3.71-.055a6.615 6.615 0 0 0 2.186-.419 4.613 4.613 0 0 0 2.633-2.633c.263-.7.404-1.438.419-2.186.043-.962.056-1.267.056-3.71s0-2.753-.056-3.71a6.581 6.581 0 0 0-.421-2.217zm-1.218 9.532a5.043 5.043 0 0 1-.311 1.688 2.987 2.987 0 0 1-1.712 1.711 4.985 4.985 0 0 1-1.67.311c-.95.044-1.218.055-3.654.055-2.438 0-2.687 0-3.655-.055a4.96 4.96 0 0 1-1.669-.311 2.985 2.985 0 0 1-1.719-1.711 5.08 5.08 0 0 1-.311-1.669c-.043-.95-.053-1.218-.053-3.654 0-2.437 0-2.686.053-3.655a5.038 5.038 0 0 1 .311-1.687c.305-.789.93-1.41 1.719-1.712a5.01 5.01 0 0 1 1.669-.311c.951-.043 1.218-.055 3.655-.055s2.687 0 3.654.055a4.96 4.96 0 0 1 1.67.311 2.991 2.991 0 0 1 1.712 1.712 5.08 5.08 0 0 1 .311 1.669c.043.951.054 1.218.054 3.655 0 2.436 0 2.698-.043 3.654h-.011z">
+                            </path>
+                        </svg></a><a href="#"><svg stroke="currentColor" fill="currentColor" stroke-width="0"
+                            viewBox="0 0 512 512" class="size-6 p-0.5" height="1em" width="1em"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z">
+                            </path>
+                        </svg></a><a href="#"><svg stroke="currentColor" fill="currentColor" stroke-width="0"
+                            viewBox="0 0 24 24" class="size-6" height="1em" width="1em"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M20 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM8.339 18.337H5.667v-8.59h2.672v8.59zM7.003 8.574a1.548 1.548 0 1 1 0-3.096 1.548 1.548 0 0 1 0 3.096zm11.335 9.763h-2.669V14.16c0-.996-.018-2.277-1.388-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248h-2.667v-8.59h2.56v1.174h.037c.355-.675 1.227-1.387 2.524-1.387 2.704 0 3.203 1.778 3.203 4.092v4.71z">
+                            </path>
+                        </svg></a><a href="#"><svg stroke="currentColor" fill="currentColor" stroke-width="0"
+                            viewBox="0 0 24 24" class="size-6" height="1em" width="1em"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M21.593 7.203a2.506 2.506 0 0 0-1.762-1.766C18.265 5.007 12 5 12 5s-6.264-.007-7.831.404a2.56 2.56 0 0 0-1.766 1.778c-.413 1.566-.417 4.814-.417 4.814s-.004 3.264.406 4.814c.23.857.905 1.534 1.763 1.765 1.582.43 7.83.437 7.83.437s6.265.007 7.831-.403a2.515 2.515 0 0 0 1.767-1.763c.414-1.565.417-4.812.417-4.812s.02-3.265-.407-4.831zM9.996 15.005l.005-6 5.207 3.005-5.212 2.995z">
+                            </path>
+                        </svg></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+<script>
+    const toggle = document.getElementById('toggleDark');
+    const html = document.documentElement;
+
+    toggle.addEventListener('click', () => {
+        html.classList.toggle('dark');
+        localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+    });
+
+    if (
+        localStorage.theme === 'dark' ||
+        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark');
+    }
+</script>
+
+</html>

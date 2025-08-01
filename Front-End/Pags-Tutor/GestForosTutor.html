@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <title>Gestionar foros</title>
+</head>
+
+<body class="bg-gray-50 text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
+    <section id="titulo" class="px-[5%] py-6 md:py-8 lg:py-10 mx-auto">
+        <div class="container mx-auto">
+            <div class="flex justify-between items-center flex-wrap gap-4">
+                <h1
+                    class="mb-5 text-4xl font-bold md:mb-6 md:text-5xl lg:text-6xl py-2 bg-gradient-to-r from-sky-500 via-sky-600 to-sky-500 inline-block text-transparent bg-clip-text">
+                    Gestionar foros
+                </h1>
+
+                <div class="flex items-center gap-2">
+                    <button onclick="cerrarSesion()"
+                        class="group flex items-center justify-start w-11 h-11 bg-red-600 rounded-lg cursor-pointer relative overflow-hidden transition-all duration-200 shadow-lg hover:w-32 hover:rounded-lg active:translate-x-1 active:translate-y-1">
+                        <div
+                            class="flex items-center justify-center w-full transition-all duration-300 group-hover:justify-start group-hover:px-3">
+                            <svg class="w-4 h-4" viewBox="0 0 512 512" fill="white">
+                                <path
+                                    d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div
+                            class="absolute right-5 transform translate-x-full opacity-0 text-white text-lg font-semibold transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
+                            Cerrar
+                        </div>
+                    </button>
+
+                    <button id="toggleDark" class="w-11 h-11 p-2 rounded-lg shadow-lg bg-gray-200 dark:bg-gray-700">
+                        🌓
+                    </button>
+
+                    <button onclick="volverIncio()"
+                        class="w-11 h-11 text-lg p-2 rounded-lg shadow-lg bg-gray-300 dark:bg-gray-700">
+                        🏠
+                    </button>
+
+                </div>
+            </div>
+            <p class="md:text-md">
+                Desde aquí podrás administrar todos los mensajes escritos en los foros
+            </p>
+        </div>
+    </section>
+
+    <section class="px-[5%]">
+        <div class="container mx-auto">
+            <label for="foro-select" class="block text-lg font-medium text-gray-800 dark:text-white mb-2">Seleccionar Foro</label>
+            <select id="foro-select"
+                class="border rounded mb-8 px-3 py-2 dark:bg-gray-700 dark:border-none focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500">
+                <option value="1">Foro 1 - Ofimática</option>
+                <option value="2">Foro 2 - Diseño web</option>
+                <option value="3">Foro 3 - Mantenimiento de PC</option>
+            </select>
+
+            <table id="tabla-mensajes" class="w-full table-auto border-collapse">
+                <thead>
+                    <tr class="bg-sky-100 text-left text-sm font-semibold dark:bg-gray-700 text-center">
+                        <th class="border border-sky-300 text-sky-600 px-2 py-1 dark:border-white dark:text-white">ID Usuario</th>
+                        <th class="border border-sky-300 text-sky-600 px-2 py-1 dark:border-white dark:text-white">Nombres</th>
+                        <th class="border border-sky-300 text-sky-600 px-2 py-1 dark:border-white dark:text-white">Apellidos</th>
+                        <th class="border border-sky-300 text-sky-600 px-2 py-1 dark:border-white dark:text-white">Mensaje</th>
+                        <th class="border border-sky-300 text-sky-600 px-2 py-1 dark:border-white dark:text-white">Fecha</th>
+                        <th class="border border-sky-300 text-sky-600 px-2 py-1 dark:border-white dark:text-white">Acción</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpo-tabla-mensajes" class="text-sm dark:text-gray-300"></tbody>
+            </table>
+
+        </div>
+
+
+    </section>
+</body>
+
+
+
+<script>
+    const token = localStorage.getItem('token');
+
+    console.log("TOKEN:", token);
+    console.log("DECODED:", jwt_decode(token));
+
+    document.addEventListener('DOMContentLoaded', () => {
+        cargarMensajes();
+
+        document.getElementById('foro-select').addEventListener('change', () => {
+            cargarMensajes();
+        });
+    });
+
+    async function cargarMensajes() {
+        const idForo = document.getElementById('foro-select').value;
+
+        const res = await fetch(`http://localhost:5000/api/tutor/foros/${idForo}/mensajes`, {
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        });
+
+        const mensajes = await res.json();
+        const cuerpo = document.getElementById('cuerpo-tabla-mensajes');
+        cuerpo.innerHTML = '';
+
+        mensajes.forEach(m => {
+            const fila = document.createElement('tr');
+            fila.innerHTML = `
+                <td class="px-4 py-2 border">${m.id_usuario}</td>
+                <td class="px-4 py-2 border">${m.nombres}</td>
+                <td class="px-4 py-2 border">${m.apellidos}</td>
+                <td class="px-4 py-2 border">${m.mensaje}</td>
+                <td class="px-4 py-2 border">${new Date(m.fecha).toLocaleString()}</td>
+                <td class="px-4 py-2 border">
+                  <button onclick="eliminarMensaje(${m.id_mensaje})" class="text-red-600 dark:text-red-400 hover:underline">Eliminar</button>
+                </td>
+            `;
+            cuerpo.appendChild(fila);
+        });
+    }
+
+    async function eliminarMensaje(id) {
+        if (!confirm('¿Estás seguro de eliminar este mensaje?')) return;
+
+        const res = await fetch(`http://localhost:5000/api/tutor/foros/mensajes/${id}`, {
+            method: 'DELETE',
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+            alert('✅ Mensaje eliminado');
+            cargarMensajes();
+        } else {
+            alert('❌ Error: ' + data.error);
+        }
+    }
+
+    function cerrarSesion() {
+        localStorage.removeItem('token');
+        window.location.href = '/Front-End/index.html';
+    }
+
+    const toggle = document.getElementById('toggleDark');
+    const html = document.documentElement;
+
+    toggle.addEventListener('click', () => {
+        html.classList.toggle('dark');
+        localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+    });
+
+    // Establecer el tema al cargar
+    if (
+        localStorage.theme === 'dark' ||
+        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark');
+    }
+
+    function volverIncio() {
+        window.location.href = '/Front-End/Pags-Tutor/PanelTutor.html';
+    }
+</script>
+
+
+
+</html>

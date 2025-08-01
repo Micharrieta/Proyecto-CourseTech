@@ -1,0 +1,430 @@
+/*! tailwindcss v4.1.7 | MIT License | https://tailwindcss.com */
+@layer properties;
+.absolute {
+  position: absolute;
+}
+.relative {
+  position: relative;
+}
+.isolation-auto {
+  isolation: auto;
+}
+.-z-10 {
+  z-index: calc(10 * -1);
+}
+.z-0 {
+  z-index: 0;
+}
+.z-10 {
+  z-index: 10;
+}
+.z-100 {
+  z-index: 100;
+}
+.z-\[999\] {
+  z-index: 999;
+}
+.container {
+  width: 100%;
+}
+.mx-auto {
+  margin-inline: auto;
+}
+.my-\[3px\] {
+  margin-block: 3px;
+}
+.block {
+  display: block;
+}
+.flex {
+  display: flex;
+}
+.grid {
+  display: grid;
+}
+.hidden {
+  display: none;
+}
+.inline-flex {
+  display: inline-flex;
+}
+.size-full {
+  width: 100%;
+  height: 100%;
+}
+.h-full {
+  height: 100%;
+}
+.h-px {
+  height: 1px;
+}
+.max-h-\[60rem\] {
+  max-height: 60rem;
+}
+.min-h-svh {
+  min-height: 100svh;
+}
+.w-full {
+  width: 100%;
+}
+.origin-center {
+  transform-origin: center;
+}
+.scale-0 {
+  --tw-scale-x: 0%;
+  --tw-scale-y: 0%;
+  --tw-scale-z: 0%;
+  scale: var(--tw-scale-x) var(--tw-scale-y);
+}
+.-rotate-45 {
+  rotate: calc(45deg * -1);
+}
+.rotate-45 {
+  rotate: 45deg;
+}
+.transform {
+  transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.grid-flow-row {
+  grid-auto-flow: row;
+}
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+.grid-cols-\[max-content\] {
+  grid-template-columns: max-content;
+}
+.flex-col {
+  flex-direction: column;
+}
+.flex-col-reverse {
+  flex-direction: column-reverse;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.items-center {
+  align-items: center;
+}
+.items-start {
+  align-items: flex-start;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.justify-start {
+  justify-content: flex-start;
+}
+.gap-x-\[8vw\] {
+  column-gap: 8vw;
+}
+.justify-self-end {
+  justify-self: flex-end;
+}
+.overflow-hidden {
+  overflow: hidden;
+}
+.rounded-full {
+  border-radius: calc(infinity * 1px);
+}
+.border {
+  border-style: var(--tw-border-style);
+  border-width: 1px;
+}
+.border-2 {
+  border-style: var(--tw-border-style);
+  border-width: 2px;
+}
+.border-b {
+  border-bottom-style: var(--tw-border-style);
+  border-bottom-width: 1px;
+}
+.object-cover {
+  object-fit: cover;
+}
+.px-\[5\%\] {
+  padding-inline: 5%;
+}
+.text-center {
+  text-align: center;
+}
+.align-middle {
+  vertical-align: middle;
+}
+.whitespace-nowrap {
+  white-space: nowrap;
+}
+.transition-all {
+  transition-property: all;
+  transition-timing-function: var(--tw-ease, ease);
+  transition-duration: var(--tw-duration, 0s);
+}
+.duration-200 {
+  --tw-duration: 200ms;
+  transition-duration: 200ms;
+}
+.duration-300 {
+  --tw-duration: 300ms;
+  transition-duration: 300ms;
+}
+.duration-500 {
+  --tw-duration: 500ms;
+  transition-duration: 500ms;
+}
+.duration-700 {
+  --tw-duration: 700ms;
+  transition-duration: 700ms;
+}
+.duration-1000 {
+  --tw-duration: 1000ms;
+  transition-duration: 1000ms;
+}
+.ease-linear {
+  --tw-ease: linear;
+  transition-timing-function: linear;
+}
+.group-hover\:scale-100 {
+  &:is(:where(.group):hover *) {
+    @media (hover: hover) {
+      --tw-scale-x: 100%;
+      --tw-scale-y: 100%;
+      --tw-scale-z: 100%;
+      scale: var(--tw-scale-x) var(--tw-scale-y);
+    }
+  }
+}
+.group-hover\:rotate-0 {
+  &:is(:where(.group):hover *) {
+    @media (hover: hover) {
+      rotate: 0deg;
+    }
+  }
+}
+.group-hover\:rotate-90 {
+  &:is(:where(.group):hover *) {
+    @media (hover: hover) {
+      rotate: 90deg;
+    }
+  }
+}
+.group-hover\:border-none {
+  &:is(:where(.group):hover *) {
+    @media (hover: hover) {
+      --tw-border-style: none;
+      border-style: none;
+    }
+  }
+}
+.group-hover\:duration-500 {
+  &:is(:where(.group):hover *) {
+    @media (hover: hover) {
+      --tw-duration: 500ms;
+      transition-duration: 500ms;
+    }
+  }
+}
+.group-hover\:duration-700 {
+  &:is(:where(.group):hover *) {
+    @media (hover: hover) {
+      --tw-duration: 700ms;
+      transition-duration: 700ms;
+    }
+  }
+}
+.file\:border-0 {
+  &::file-selector-button {
+    border-style: var(--tw-border-style);
+    border-width: 0px;
+  }
+}
+.file\:bg-transparent {
+  &::file-selector-button {
+    background-color: transparent;
+  }
+}
+.before\:absolute {
+  &::before {
+    content: var(--tw-content);
+    position: absolute;
+  }
+}
+.before\:-left-full {
+  &::before {
+    content: var(--tw-content);
+    left: -100%;
+  }
+}
+.before\:-z-10 {
+  &::before {
+    content: var(--tw-content);
+    z-index: calc(10 * -1);
+  }
+}
+.before\:aspect-square {
+  &::before {
+    content: var(--tw-content);
+    aspect-ratio: 1 / 1;
+  }
+}
+.before\:w-full {
+  &::before {
+    content: var(--tw-content);
+    width: 100%;
+  }
+}
+.before\:rounded-full {
+  &::before {
+    content: var(--tw-content);
+    border-radius: calc(infinity * 1px);
+  }
+}
+.before\:transition-all {
+  &::before {
+    content: var(--tw-content);
+    transition-property: all;
+    transition-timing-function: var(--tw-ease, ease);
+    transition-duration: var(--tw-duration, 0s);
+  }
+}
+.before\:duration-700 {
+  &::before {
+    content: var(--tw-content);
+    --tw-duration: 700ms;
+    transition-duration: 700ms;
+  }
+}
+.before\:hover\:w-full {
+  &::before {
+    content: var(--tw-content);
+    &:hover {
+      @media (hover: hover) {
+        width: 100%;
+      }
+    }
+  }
+}
+.before\:hover\:scale-150 {
+  &::before {
+    content: var(--tw-content);
+    &:hover {
+      @media (hover: hover) {
+        --tw-scale-x: 150%;
+        --tw-scale-y: 150%;
+        --tw-scale-z: 150%;
+        scale: var(--tw-scale-x) var(--tw-scale-y);
+      }
+    }
+  }
+}
+.before\:hover\:duration-700 {
+  &::before {
+    content: var(--tw-content);
+    &:hover {
+      @media (hover: hover) {
+        --tw-duration: 700ms;
+        transition-duration: 700ms;
+      }
+    }
+  }
+}
+.focus-visible\:outline-none {
+  &:focus-visible {
+    --tw-outline-style: none;
+    outline-style: none;
+  }
+}
+.disabled\:pointer-events-none {
+  &:disabled {
+    pointer-events: none;
+  }
+}
+.disabled\:cursor-not-allowed {
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+.disabled\:opacity-50 {
+  &:disabled {
+    opacity: 50%;
+  }
+}
+@property --tw-scale-x {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@property --tw-scale-y {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@property --tw-scale-z {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@property --tw-rotate-x {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-rotate-y {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-rotate-z {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-skew-x {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-skew-y {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-border-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
+@property --tw-duration {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-ease {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-content {
+  syntax: "*";
+  initial-value: "";
+  inherits: false;
+}
+@layer properties {
+  @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
+    *, ::before, ::after, ::backdrop {
+      --tw-scale-x: 1;
+      --tw-scale-y: 1;
+      --tw-scale-z: 1;
+      --tw-rotate-x: initial;
+      --tw-rotate-y: initial;
+      --tw-rotate-z: initial;
+      --tw-skew-x: initial;
+      --tw-skew-y: initial;
+      --tw-border-style: solid;
+      --tw-duration: initial;
+      --tw-ease: initial;
+      --tw-content: "";
+    }
+  }
+}

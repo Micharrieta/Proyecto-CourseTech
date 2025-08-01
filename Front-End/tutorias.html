@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es" class="">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <title>Tutorias</title>
+</head>
+
+
+
+<body class="bg-white text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
+
+    <section id="desc-tutoria" class="px-[5%] py-8 md:py-10 lg:py-12">
+        <div class="container mx-auto">
+            <div class="flex items-center justify-between flex-wrap w-full gap-4">
+                <!-- Título a la izquierda -->
+                <h1
+                    class="bg-gradient-to-r from-sky-500 via-sky-600 to-sky-500 inline-block text-transparent bg-clip-text text-7xl font-bold">
+                    Tutorías
+                </h1>
+
+
+                <div class="flex items-center gap-2">
+                    <button onclick="cerrarSesion()"
+                        class="group flex items-center justify-start w-11 h-11 bg-red-600 rounded-lg cursor-pointer relative overflow-hidden transition-all duration-200 shadow-lg hover:w-32 hover:rounded-lg active:translate-x-1 active:translate-y-1">
+                        <div
+                            class="flex items-center justify-center w-full transition-all duration-300 group-hover:justify-start group-hover:px-3">
+                            <svg class="w-4 h-4" viewBox="0 0 512 512" fill="white">
+                                <path
+                                    d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div
+                            class="absolute right-5 transform translate-x-full opacity-0 text-white text-lg font-semibold transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
+                            Cerrar
+                        </div>
+                    </button>
+
+                    <button id="toggleDark" class="w-11 h-11 p-2 rounded-lg shadow-lg bg-gray-200 dark:bg-gray-700">
+                        🌓
+                    </button>
+
+                    <button onclick="volverIncio()"
+                        class="w-11 h-11 text-lg p-2 rounded-lg shadow-lg bg-gray-300 dark:bg-gray-700">
+                        🏠
+                    </button>
+
+                </div>
+            </div>
+
+            <p class="md:text-md mt-3">
+                Aquí podrás solicitar tus tutorías de manera
+                sencilla y rápida.
+            </p>
+        </div>
+    </section>
+
+    <section id="detalle-tutoria" class="mb-3 px-[5%] py-8 md:py-10 lg:py-12">
+        <div class="container mx-auto">
+            <div
+                class="grid grid-cols-1 gap-y-12 md:grid-flow-row md:grid-cols-2 md:items-center md:gap-x-12 lg:gap-x-20">
+                <div>
+                    <h1 class="rb-5 mb-5 text-5xl font-bold md:mb-6 md:text-6xl lg:text-6xl">
+                        ¿Cómo funcionan <p
+                            class="bg-gradient-to-r from-sky-500 via-sky-600 to-sky-500 inline-block text-transparent bg-clip-text">
+                            nuestras sesiones de tutoría?</p>
+                    </h1>
+                    <p class="mb-6 md:mb-8 md:text-md">
+                        Nuestras tutorías están diseñadas para ser accesibles y efectivas.
+                        Sigue estos simples pasos para solicitarlas y participar.
+                    </p>
+                    <div class="grid grid-cols-1 gap-6 py-2 sm:grid-cols-2">
+                        <div>
+                            <h6
+                                class="mb-3 bg-gradient-to-r from-sky-500 via-sky-600 to-sky-500 inline-block text-transparent bg-clip-text text-md leading-[1.4] font-bold md:mb-4 md:text-xl">
+                                Solicitar Tutoría
+                            </h6>
+                            <p>Completa el formulario y te asignaremos una tutoría.</p>
+                        </div>
+                        <div>
+                            <h6
+                                class="mb-3 bg-gradient-to-r from-sky-500 via-sky-600 to-sky-500 inline-block text-transparent bg-clip-text text-md leading-[1.4] font-bold md:mb-4 md:text-xl">
+                                Acceder a una sesión
+                            </h6>
+                            <p>
+                                Recibe un enlace y únete a la sesión en el horario asignado.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mt-6 flex flex-wrap items-center gap-4 md:mt-8">
+                        <a href="#contacto">
+                            <button
+                                class="text-xl font-semibold w-32 h-12 rounded bg-sky-500 text-white relative overflow-hidden group z-10 hover:text-white duration-1000">
+                                <span
+                                    class="absolute bg-sky-600 w-36 h-36 rounded-full group-hover:scale-100 scale-0 -z-10 -left-2 -top-10 group-hover:duration-500 duration-700 origin-center transform transition-all"></span>
+                                <span
+                                    class="absolute bg-sky-800 w-36 h-36 -left-2 -top-10 rounded-full group-hover:scale-100 scale-0 -z-10 group-hover:duration-700 duration-500 origin-center transform transition-all"></span>
+                                Solicitar
+                            </button>
+                        </a>
+
+                    </div>
+                </div>
+                <div>
+                    <img src="images/elem1-landing.png" class="w-full rounded-lg object-cover" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section id="contacto" class="mt-4 px-[5%] py-16 md:py-24 lg:py-28">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2">
+                <div class="mb-8 w-full max-w-lg md:mb-10 lg:mb-12 p-10 dark:bg-gray-800 rounded-lg">
+                    <h2 class="rb-5 mb-5 text-center text-5xl font-bold md:mb-6 md:text-6xl lg:text-6xl">
+                        Solicitar <p
+                            class=" bg-gradient-to-r from-sky-500 via-sky-600 to-sky-500 inline-block text-transparent bg-clip-text">
+                            tutoría</p>
+                    </h2>
+                    <p class="text-center mb-10 md:text-md">
+                        Estamos aquí para ayudarte con tus dudas y solicitudes.
+                    </p>
+
+                    <!--Inicio Formulario-->
+                    <form id="form-tutoria" class="grid max-w-lg grid-cols-1 grid-rows-[auto_auto] gap-6">
+
+                        <div class="grid grid-cols-2 gap-6">
+
+                            <div class="grid w-full items-center">
+                                <label class="mb-2 block font-medium" for="nombre">Nombres*</label>
+                                <div class="relative flex w-full items-center">
+                                    <input type="text"
+                                        class="w-full focus:border-sky-500 border border-gray-300 bg-white min-h-11 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-500 dark:text-black"
+                                        id="nombres" required />
+                                </div>
+                            </div>
+
+                            <div class="grid w-full items-center">
+                                <label class="mb-2 block font-medium" for="apellidos">Apellidos*</label>
+                                <div class="relative flex w-full items-center">
+                                    <input type="text"
+                                        class="w-full focus:border-sky-500 border border-gray-300 bg-white min-h-11 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-500 dark:text-black"
+                                        id="apellidos" required />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+                            <div class="grid w-full items-center">
+                                <label class="mb-2 block font-medium" for="email">Email*</label>
+                                <div class="relative flex w-full items-center">
+                                    <input type="email"
+                                        class="w-full focus:border-sky-500 border border-gray-300 bg-white min-h-11 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-500 dark:text-black"
+                                        id="email" required />
+                                </div>
+                            </div>
+                            <div class="grid w-full items-center">
+                                <label class="mb-2 block font-medium" for="celular">Celular*</label>
+                                <div class="relative flex w-full items-center">
+                                    <input type="tel"
+                                        class="w-full focus:border-sky-500 border border-gray-300 bg-white min-h-11 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-500 dark:text-black"
+                                        id="celular" required />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid w-full items-center">
+                            <label class="mb-2 block font-medium">Selecciona un
+                                curso*
+                            </label>
+                            <select id="curso"
+                                class="w-full focus:border-sky-500 border border-gray-300 bg-white min-h-11 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-500 dark:text-black">
+                                <option value="1">Curso 1 - Ofimática</option>
+                                <option value="2">Curso 2 - Diseño web</option>
+                                <option value="3">Curso 3 - Mantenimiento de PC</option>
+                            </select>
+
+                        </div>
+
+                        <div class="grid w-full items-center">
+                            <label class="mb-2 block font-medium" for="message">Mensaje (opcional)</label>
+                            <textarea
+                                class="w-full focus:border-sky-500 border border-gray-300 bg-white min-h-11 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-500 dark:text-black"
+                                id="mensaje" placeholder="Escribe tu mensaje..."></textarea>
+                        </div>
+
+                        <div>
+                            <button type="submit"
+                                class="w-full bg-sky-500 hover:bg-sky-600 text-white font-semibold py-2 rounded-lg transition duration-200">
+                                Solicitar tutoría
+                            </button>
+                        </div>
+                    </form>
+
+
+                </div>
+
+                <div class="pt-16" id="image">
+                    <img src="images/tutoria.png" class="w-full rounded-lg object-cover" />
+                </div>
+            </div>
+    </section>
+
+    <!-- Modal de confirmación -->
+    <div id="modal-confirmacion"
+        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg shadow-lg p-8 max-w-sm text-center dark:bg-gray-800">
+            <div class="flex justify-center mb-4">
+                <img src="icons/check.svg" class="h-12 w-12">
+            </div>
+            <h3 class="text-xl font-semibold text-gray-200 dark:text-white mb-2">¡Solicitud enviada!</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-6">Tu solicitud de tutoría ha sido registrada correctamente. Pronto recibirás un
+                correo con los detalles de tu sesión de tutoría.</p>
+            <button onclick="cerrarModal()"
+                class="bg-sky-500 hover:bg-sky-600 font-semibold text-white px-4 py-2 rounded-lg transition duration-200">
+                Entendido
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const toggle = document.getElementById('toggleDark');
+        const html = document.documentElement;
+
+        toggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+        });
+
+        // Establecer el tema al cargar
+        if (
+            localStorage.theme === 'dark' ||
+            (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+        ) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+
+
+</body>
+
+<script>
+    document.getElementById('form-tutoria').addEventListener('submit', async e => {
+        e.preventDefault();
+        const datos = {
+            nombres: document.getElementById('nombres').value,
+            apellidos: document.getElementById('apellidos').value,
+            email: document.getElementById('email').value,
+            celular: document.getElementById('celular').value,
+            id_curso: document.getElementById('curso').value,
+            mensaje: document.getElementById('mensaje').value,
+            fecha: new Date().toISOString()
+        };
+
+        const res = await fetch('http://localhost:5000/api/tutorias/solicitar', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(datos)
+        });
+
+        if (res.ok) {
+            document.getElementById('form-tutoria').reset(); // Limpiar el formulario
+            document.getElementById('modal-confirmacion').classList.remove('hidden'); // Mostrar el modal
+        } else {
+            alert(data.message || 'Ocurrió un error al enviar la solicitud.');
+        }
+
+    });
+
+    function cerrarModal() {
+        document.getElementById('modal-confirmacion').classList.add('hidden');
+    }
+
+    function toggleModo() {
+        document.documentElement.classList.toggle('dark');
+        localStorage.setItem('modoOscuro', document.documentElement.classList.contains('dark'));
+    }
+
+    // Mantener preferencia del usuario
+    document.addEventListener('DOMContentLoaded', () => {
+        if (localStorage.getItem('modoOscuro') === 'true') {
+            document.documentElement.classList.add('dark');
+        }
+    });
+
+
+    function cerrarSesion() {
+        localStorage.removeItem('token');
+        window.location.href = 'index.html';
+    }
+
+    function volverIncio() {
+        window.location.href = 'inicio.html';
+    }
+</script>
+
+</html>

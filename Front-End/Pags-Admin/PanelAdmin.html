@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <title>Panel de administración</title>
+</head>
+
+<body class="bg-gray-50 text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
+
+    <section id="titulo-inicio" class="px-[5%] py-6 md:py-8 lg:py-10 mx-auto">
+        <div class="container mx-auto">
+            <div class="flex justify-between items-center flex-wrap gap-4">
+                <h1
+                    class="py-2 bg-gradient-to-r from-sky-500 via-sky-600 to-sky-500 inline-block text-transparent bg-clip-text mb-5 text-4xl font-bold md:mb-6 md:text-5xl lg:text-6xl">
+                    Panel de administración
+                </h1>
+
+                <div class="flex items-center gap-2">
+                    <button onclick="cerrarSesion()"
+                        class="group flex items-center justify-start w-11 h-11 bg-red-600 rounded-lg cursor-pointer relative overflow-hidden transition-all duration-200 shadow-lg hover:w-32 hover:rounded-lg active:translate-x-1 active:translate-y-1">
+                        <div
+                            class="flex items-center justify-center w-full transition-all duration-300 group-hover:justify-start group-hover:px-3">
+                            <svg class="w-4 h-4" viewBox="0 0 512 512" fill="white">
+                                <path
+                                    d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div
+                            class="absolute right-5 transform translate-x-full opacity-0 text-white text-lg font-semibold transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
+                            Cerrar
+                        </div>
+                    </button>
+
+                    <button id="toggleDark" class="w-11 h-11 p-2 rounded-lg shadow-lg bg-gray-200 dark:bg-gray-700">
+                        🌓
+                    </button>
+                </div>
+
+            </div>
+            <p class="md:text-md">
+                Desde aquí podrás administrar todos los recursos del sitio web
+            </p>
+        </div>
+    </section>
+
+    <section id="cont-inicio" class="px-[5%] pb-[5%]">
+        <div class="container mx-auto">
+
+            <div
+                class="grid grid-cols-1 items-start justify-center gap-y-12 md:grid-cols-3 md:gap-x-8 md:gap-y-14 lg:grid-cols-3 lg:gap-y-16">
+
+                <div id="card1" class="flex flex-col shadow-2xl p-5 rounded-md bg-white dark:bg-gray-800">
+                    <img class="mb-3 h-48 w-full object-cover rounded-xl md:mb-2"
+                        src="/Front-End/images/admin-img1.png" />
+                    <h3 class="mb-3 text-xl font-bold md:mb-2 md:text-2xl">Gestionar usuarios</h3>
+                    <p class="dark:text-gray-200">
+                        Aqui podrás realizar acciones como modificar datos de los usuarios y eliminar cuentas.
+                    </p>
+
+                    <div class="mt-4 flex flex-wrap items-center gap-4 md:mt-5">
+                        <a href="GestUser.html" class="w-full">
+                            <button
+                                class="w-full bg-sky-500 hover:bg-sky-600 text-white font-semibold py-2 rounded-md transition duration-200">
+                                Ir a gestionar usuarios
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="card2" class="flex flex-col shadow-2xl p-5 rounded-md bg-white dark:bg-gray-800">
+                    <img class="mb-3 h-48 w-full object-cover rounded-xl md:mb-2"
+                        src="/Front-End/images/admin-img2.jpg" />
+                    <h3 class="mb-3 text-xl font-bold md:mb-2 md:text-2xl">Ocultar cursos</h3>
+                    <p class="dark:text-gray-200">
+                        Aquí podrás marcar como ocultos los cursos que sean necesarios.
+                    </p>
+
+                    <div class="mt-4 flex flex-wrap items-center gap-4 md:mt-5">
+                        <a href="GestCursos.html" class="w-full">
+                            <button
+                                class="w-full bg-sky-500 hover:bg-sky-600 text-white font-semibold py-2 rounded-md transition duration-200">
+                                Ir a gestionar cursos
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="card3" class="flex flex-col shadow-2xl p-5 rounded-md bg-white dark:bg-gray-800">
+                    <img class="mb-3 h-48 w-full object-cover rounded-xl md:mb-2"
+                        src="/Front-End/images/admin-img3.png" />
+                    <h3 class="mb-3 text-xl font-bold md:mb-2 md:text-2xl">Gestionar evlauaciones</h3>
+                    <p class="dark:text-gray-200">
+                        Aquí podrás editar preguntas, asignar y eliminar las evaluaciones realizadas.
+                    </p>
+
+                    <div class="mt-4 flex flex-wrap items-center gap-4 md:mt-5">
+                        <a href="GestEvaluaciones.html" class="w-full">
+                            <button
+                                class="w-full bg-sky-500 hover:bg-sky-600 text-white font-semibold py-2 rounded-md transition duration-200">
+                                Ir a gestionar preguntas
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="card4" class="flex flex-col shadow-2xl p-5 rounded-md dark:bg-gray-800">
+                    <img class="mb-3 h-48 w-full object-cover rounded-xl md:mb-2"
+                        src="/Front-End/images/admin-img4.jpg" />
+                    <h3 class="mb-3 text-xl font-bold md:mb-2 md:text-2xl">Gestionar foros</h3>
+                    <p class="dark:text-gray-200">
+                        Aquí podrás eliminar comentarios inapropiados y bloquear usuarios por conducta inadecuada.
+                    </p>
+
+                    <div class="mt-4 flex flex-wrap items-center gap-4 md:mt-5">
+                        <a href="GestForos.html" class="w-full">
+                            <button
+                                class="w-full bg-sky-500 hover:bg-sky-600 text-white font-semibold py-2 rounded-md transition duration-200">
+                                Ir a gestionar foros
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="card5" class="flex flex-col shadow-2xl p-5 rounded-md dark:bg-gray-800">
+                    <img class="mb-3 h-48 w-full object-cover rounded-xl md:mb-2"
+                        src="/Front-End/images/admin-img5.png" />
+                    <h3 class="mb-3 text-xl font-bold md:mb-2 md:text-2xl">Ver estadísticas</h3>
+                    <p class="dark:text-gray-200">
+                        Aquí podrás ver el número de usuarios registrados, los cursos más tomados, evaluaciones
+                        realizadas, etc.
+                    </p>
+
+                    <div class="mt-4 flex flex-wrap items-center gap-4 md:mt-5">
+                        <a href="Dashboard.html" class="w-full">
+                            <button
+                                class="w-full bg-sky-500 hover:bg-sky-600 text-white font-semibold py-2 rounded-md transition duration-200">
+                                Ir a ver estadisticas
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="card6" class="flex flex-col shadow-2xl p-5 rounded-md dark:bg-gray-800">
+                    <img class="mb-3 h-48 w-full object-cover rounded-xl md:mb-2"
+                        src="/Front-End/images/admin-img6.jpg" />
+                    <h3 class="mb-3 text-xl font-bold md:mb-2 md:text-2xl">Gestionar tutores</h3>
+                    <p class="dark:text-gray-200">
+                        Aquí podrás crear cuentas de tipo tutor, así como asignar tutores a cursos o usuarios.
+                    </p>
+
+                    <div class="mt-4 flex flex-wrap items-center gap-4 md:mt-5">
+                        <a href="GestTutores.html" class="w-full">
+                            <button
+                                class="w-full bg-sky-500 hover:bg-sky-600 text-white font-semibold py-2 rounded-md transition duration-200">
+                                Ir a gestionar tutores
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</body>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const token = localStorage.getItem('token');
+
+        if (!token) {
+            alert('🔒 No has iniciado sesión');
+            window.location.href = 'login.html';
+            return;
+        }
+
+        try {
+            const decoded = jwt_decode(token);
+
+            if (decoded.rol !== 1) {
+                alert('⛔ Acceso denegado: esta página es solo para administradores');
+                window.location.href = 'inicio.html'; // o cualquier otra página de usuario común
+            }
+
+            // Si el rol es correcto, continúa
+            console.log('✅ Acceso permitido al panel de administrador');
+
+        } catch (err) {
+            console.error('Token inválido:', err);
+            alert('Token inválido o expirado');
+            window.location.href = 'login.html';
+        }
+    });
+
+    function cerrarSesion() {
+        localStorage.removeItem('token');
+        window.location.href = '/Front-End/index.html';
+    }
+
+    const toggle = document.getElementById('toggleDark');
+    const html = document.documentElement;
+
+    toggle.addEventListener('click', () => {
+        html.classList.toggle('dark');
+        localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+    });
+
+    // Establecer el tema al cargar
+    if (
+        localStorage.theme === 'dark' ||
+        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark');
+    }
+
+</script>
+
+</html>
