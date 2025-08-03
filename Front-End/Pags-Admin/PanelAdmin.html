@@ -189,16 +189,15 @@
 
             if (decoded.rol !== 1) {
                 alert('⛔ Acceso denegado: esta página es solo para administradores');
-                window.location.href = 'inicio.html'; // o cualquier otra página de usuario común
+                window.location.href = '../inicio.html'; 
             }
 
-            // Si el rol es correcto, continúa
             console.log('✅ Acceso permitido al panel de administrador');
 
         } catch (err) {
             console.error('Token inválido:', err);
             alert('Token inválido o expirado');
-            window.location.href = 'login.html';
+            window.location.href = '../login.html';
         }
     });
 
