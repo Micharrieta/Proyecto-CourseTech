@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const publicRoutes = require('./routes/public');
-
+const path = require('path');
 const verificarToken = require('./middleware/verificarToken');  
 
 
@@ -25,6 +25,7 @@ app.use('/api/evaluaciones', verificarToken, evaluacionRoutes);
 app.use('/api/foros', foroRoutes);
 app.use('/api/tutor', rutasTutor);
 app.use('/api/tutorias', rutasTutorias);
+app.use(express.static(path.join(__dirname, '../Front-End')));
 
 const PORT = 5000;
 app.listen(PORT, () => {

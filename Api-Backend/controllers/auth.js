@@ -12,8 +12,8 @@ exports.register = async (req, res) => {
     const hashedPassword = await bcrypt.hash(contrasena, 10);
     const sql = 'INSERT INTO usuarios (nombres, apellidos, email, contrasena, genero, celular, id_rol) VALUES (?, ?, ?, ?, ?, ?, ?)';
     db.query(sql, [nombres, apellidos, email, hashedPassword, genero, celular, id_rol], (err, result) => {
-      if (err) 
-      return res.status(500).json({ error: 'Error al registrar usuario' });
+      if (err)
+        return res.status(500).json({ error: 'Error al registrar usuario' });
       res.status(201).json({ mensaje: 'Usuario registrado correctamente' });
     });
   } catch (err) {
@@ -71,7 +71,8 @@ exports.solicitarRecuperacion = (req, res) => {
 
     const usuario = results[0];
     const token = jwt.sign({ id: usuario.id_usuario }, process.env.JWT_TOKEN, { expiresIn: '15m' });
-    const enlace = `${window.location.origin}${window.location.pathname.replace(/\/[^/]*$/, '/') + 'restablecer.html?token=' + token}`;
+    const enlace = `http://${req.headers.host}/restablecer.html?token=${token}`;
+
 
     const transporter = nodemailer.createTransport({
       service: process.env.EMAIL_SERVICE,
