@@ -88,7 +88,7 @@
                     </p>
 
                     <div class="mt-4 flex flex-wrap items-center gap-4 md:mt-5">
-                        <a href="/Front-End/Pags-Tutor/GestForosTutor.html" class="w-full">
+                        <a href="../Pags-Tutor/GestForosTutor.html" class="w-full">
                             <button
                                 class="w-full bg-sky-500 hover:bg-sky-600 text-white font-semibold py-2 rounded-md transition duration-200">
                                 Ir a gestionar foros
@@ -106,7 +106,7 @@
                     </p>
 
                     <div class="mt-4 flex flex-wrap items-center gap-4 md:mt-5">
-                        <a href="/Front-End/Pags-Tutor/DashboardTutor.html" class="w-full">
+                        <a href="../Pags-Tutor/DashboardTutor.html" class="w-full">
                             <button
                                 class="w-full bg-sky-500 hover:bg-sky-600 text-white font-semibold py-2 rounded-md transition duration-200">
                                 Ir a ver estadisticas
@@ -126,7 +126,7 @@
 
         if (!token) {
             alert('🔒 No has iniciado sesión');
-            window.location.href = 'login.html';
+            window.location.href = '../login.html';
             return;
         }
 
@@ -135,7 +135,7 @@
 
             if (decoded.rol !== 2) {
                 alert('⛔ Acceso denegado: esta página es solo para tutores');
-                window.location.href = 'inicio.html'; // o cualquier otra página de usuario común
+                window.location.href = '../inicio.html'; // o cualquier otra página de usuario común
             }
 
             // Si el rol es correcto, continúa
