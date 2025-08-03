@@ -71,8 +71,7 @@ exports.solicitarRecuperacion = (req, res) => {
 
     const usuario = results[0];
     const token = jwt.sign({ id: usuario.id_usuario }, process.env.JWT_TOKEN, { expiresIn: '15m' });
-    const enlace = `http://127.0.0.1:5500/Front-End/restablecer.html?token=${token}`;
-
+    const enlace = `${window.location.origin}${window.location.pathname.replace(/\/[^/]*$/, '/') + 'restablecer.html?token=' + token}`;
 
     const transporter = nodemailer.createTransport({
       service: process.env.EMAIL_SERVICE,
