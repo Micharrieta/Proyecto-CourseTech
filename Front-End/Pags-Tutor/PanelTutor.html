@@ -135,11 +135,10 @@
 
             if (decoded.rol !== 2) {
                 alert('⛔ Acceso denegado: esta página es solo para tutores');
-                window.location.href = '../inicio.html'; // o cualquier otra página de usuario común
+                window.location.href = '../index.html'; 
             }
 
-            // Si el rol es correcto, continúa
-            console.log('✅ Acceso permitido al panel de administrador');
+            console.log('✅ Acceso permitido al panel de tutorías');
 
         } catch (err) {
             console.error('Token inválido:', err);
