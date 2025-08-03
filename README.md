@@ -74,7 +74,13 @@ Para ejecutar el front-end simplemente abre live server en el archivo 'index.htm
 
 ## ADICIONAL
 
-Si deseas crear usuarios de tipo administrador o tutor, puedes ejecutar los archivos 'crearAdmin.js' y 'crearTutor.js'.
+Si deseas crear usuarios de tipo administrador o tutor, puedes ejecutar los archivos 'crearAdmin.js' y 'crearTutor.js'con los siguientes comandos.
+
+```
+node crearAdmin.js
+
+node crearTutor.js
+```
 
 Estos archivos insertan en la base de datos usuarios del tipo admin o tutor con unas credenciales por defecto que puedes cambiar a tu gusto.
 

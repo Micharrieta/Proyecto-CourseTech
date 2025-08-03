@@ -66,13 +66,20 @@
             <table id="tabla-usuarios" class="w-full table-auto border-collapse">
                 <thead class="bg-sky-100 dark:bg-gray-700">
                     <tr>
-                        <th class="border border-sky-300 text-sky-600 px-2 py-1 dark:border-white dark:text-white">ID</th>
-                        <th class="border border-sky-300 text-sky-600 px-2 py-1 dark:border-white dark:text-white">Nombre</th>
-                        <th class="border border-sky-300 text-sky-600 px-2 py-1 dark:border-white dark:text-white">Apellidos</th>
-                        <th class="border border-sky-300 text-sky-600 px-2 py-1 dark:border-white dark:text-white">Celular</th>
-                        <th class="border border-sky-300 text-sky-600 px-2 py-1 dark:border-white dark:text-white">Email</th>
-                        <th class="border border-sky-300 text-sky-600 px-2 py-1 dark:border-white dark:text-white">Rol</th>
-                        <th class="border border-sky-300 text-sky-600 px-2 py-1 dark:border-white dark:text-white">Acciones</th>
+                        <th class="border border-sky-300 text-sky-600 px-2 py-1 dark:border-white dark:text-white">ID
+                        </th>
+                        <th class="border border-sky-300 text-sky-600 px-2 py-1 dark:border-white dark:text-white">
+                            Nombre</th>
+                        <th class="border border-sky-300 text-sky-600 px-2 py-1 dark:border-white dark:text-white">
+                            Apellidos</th>
+                        <th class="border border-sky-300 text-sky-600 px-2 py-1 dark:border-white dark:text-white">
+                            Celular</th>
+                        <th class="border border-sky-300 text-sky-600 px-2 py-1 dark:border-white dark:text-white">Email
+                        </th>
+                        <th class="border border-sky-300 text-sky-600 px-2 py-1 dark:border-white dark:text-white">Rol
+                        </th>
+                        <th class="border border-sky-300 text-sky-600 px-2 py-1 dark:border-white dark:text-white">
+                            Acciones</th>
                     </tr>
                 </thead>
                 <tbody id="usuarios-body" class="dark:text-gray-200">
@@ -120,20 +127,36 @@
     });
 
     async function eliminarUsuario(id) {
-        const confirmar = confirm('¿Deseas eliminar este usuario?');
+        const token = localStorage.getItem('token');
+
+        const check = await fetch(`http://localhost:5000/api/admin/usuarios/${id}/respuestas`, {
+            headers: { Authorization: 'Bearer ' + token }
+        });
+        const { tiene } = await check.json();
+
+        let confirmar = false;
+
+  
+        if (tiene) {
+            confirmar = confirm('⚠️ Este usuario tiene respuestas asociadas. ¿Deseas eliminarlas junto con el usuario?');
+        } else {
+            confirmar = confirm('¿Deseas eliminar este usuario?');
+        }
+
         if (!confirmar) return;
 
-        const token = localStorage.getItem('token');
+
         const res = await fetch(`http://localhost:5000/api/admin/usuarios/${id}`, {
             method: 'DELETE',
             headers: { Authorization: 'Bearer ' + token }
         });
 
         if (res.ok) {
-            alert('Usuario eliminado');
+            alert('Usuario eliminado correctamente');
             location.reload();
         } else {
-            alert('Error al eliminar usuario');
+            const data = await res.json();
+            alert('Error al eliminar: ' + (data.error || 'desconocido'));
         }
     }
 

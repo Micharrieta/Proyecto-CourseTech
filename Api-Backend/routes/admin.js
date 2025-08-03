@@ -32,7 +32,8 @@ router.delete('/foros/mensajes/:id', verificarAdmin, adminController.eliminarMen
 
 router.put('/usuarios/:id/tutor', verificarAdmin, adminController.transformarEnTutor);
 
+//Obtener si tiene respuestas a examenes 
+router.get('/usuarios/:id/respuestas', verificarAdmin, adminController.tieneRespuestas);
 
-// Más rutas aquí...
 
 module.exports = router;

@@ -10,12 +10,55 @@ exports.obtenerUsuarios = (req, res) => {
 
 exports.eliminarUsuario = (req, res) => {
   const id = req.params.id;
-  const sql = 'DELETE FROM usuarios WHERE id_usuario = ? AND id_rol != 1';
-  db.query(sql, [id], (err) => {
-    if (err) return res.status(500).json({ error: 'Error al eliminar usuario' });
-    res.json({ mensaje: 'Usuario eliminado correctamente' });
+
+  const eliminarRespuestas = 'DELETE FROM respuestas_usuario WHERE id_usuario = ?';
+  const eliminarResultados = 'DELETE FROM resultados WHERE id_usuario = ?';
+  const eliminarUsuario = 'DELETE FROM usuarios WHERE id_usuario = ? AND id_rol != 1';
+
+  db.query(eliminarRespuestas, [id], (err) => {
+    if (err) {
+      console.error('Error al eliminar respuestas del usuario:', err);
+      return res.status(500).json({ error: 'Error al eliminar respuestas del usuario' });
+    }
+
+    db.query(eliminarResultados, [id], (err) => {
+      if (err) {
+        console.error('Error al eliminar resultados del usuario:', err);
+        return res.status(500).json({ error: 'Error al eliminar resultados del usuario' });
+      }
+
+      db.query(eliminarUsuario, [id], (err, result) => {
+        if (err) {
+          console.error('Error al eliminar usuario:', err);
+          return res.status(500).json({ error: 'Error al eliminar usuario' });
+        }
+
+        if (result.affectedRows === 0) {
+          return res.status(404).json({ error: 'Usuario no eliminado (posiblemente admin o no existe)' });
+        }
+
+        res.json({ mensaje: '✅ Usuario y datos relacionados eliminados correctamente' });
+      });
+    });
   });
 };
+
+// Ruta nueva para verificar si el usuario tiene respuestas
+exports.tieneRespuestas = (req, res) => {
+  const id = req.params.id;
+  const sql = 'SELECT COUNT(*) AS total FROM respuestas_usuario WHERE id_usuario = ?';
+
+  db.query(sql, [id], (err, result) => {
+    if (err) {
+      console.error('Error al verificar respuestas del usuario:', err);
+      return res.status(500).json({ error: 'Error al consultar respuestas' });
+    }
+
+    const tiene = result[0].total > 0;
+    res.json({ tiene });
+  });
+};
+
 
 exports.editarUsuario = (req, res) => {
   const id = req.params.id;
@@ -202,9 +245,9 @@ exports.obtenerEstadisticas = (req, res) => {
           ORDER BY total_intentos DESC
           LIMIT 1;
         `,
-        callback: r => resultados.usuarioMasActivo = r[0]
-          ? `${r[0].nombres} ${r[0].apellidos} (${r[0].total_intentos} intentos)`
-          : 'Sin datos'
+      callback: r => resultados.usuarioMasActivo = r[0]
+        ? `${r[0].nombres} ${r[0].apellidos} (${r[0].total_intentos} intentos)`
+        : 'Sin datos'
     },
     {
       sql: `
