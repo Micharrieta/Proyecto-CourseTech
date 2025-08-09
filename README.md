@@ -3,6 +3,7 @@ Plataforma web de capacitación en habilidades digitales a través de cursos, ev
 Esta plataforma está diseñada para facilitar la capacitación en habilidades digitales. Permite a los usuarios registrarse, realizar evaluaciones, acceder a foros de discusión, solicitar tutorías y recibir asistencia personalizada. El sistema incluye un panel de administración y tutorías para gestionar usuarios, cursos, evaluaciones y contenidos, todo integrado en una arquitectura web con frontend y backend conectados a una base de datos MySQL.
 <br>
 
+
 ## Live view: https://coursetech-project.netlify.app/
 
 Credenciales administrador:
@@ -14,6 +15,8 @@ tutor@gmail.com
 tutor123
 
 Nota: Al abrir el enlace de la live view debes esperar a que el servidor se encuentre activo para poder usar la plataforma.
+
+<br>
 
 
 ## Proyecto construido con: 
