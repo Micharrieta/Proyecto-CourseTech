@@ -4,12 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-    }
-  </script>
+  <link href="../dist/output.css" rel="stylesheet">
   <title>Gestionar Preguntas</title>
 </head>
 
@@ -54,10 +49,11 @@
 
       <!-- Selector de evaluación -->
       <div class="mb-6">
-        <label for="evaluacion-select" class="block text-lg font-medium text-gray-800 mb-2 dark:text-gray-200">Seleccionar
+        <label for="evaluacion-select"
+          class="block text-lg font-medium text-gray-800 mb-2 dark:text-gray-200">Seleccionar
           Evaluación</label>
         <select id="evaluacion-select"
-          class="border rounded px-3 py-2 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 dark:bg-gray-700 dark:border-none">
+          class="border-gray-200 bg-white border rounded px-3 py-2 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 dark:bg-gray-700 dark:border-none">
           <option value="1">Evaluación 1 - Ofimática</option>
           <option value="2">Evaluación 2 - HTML y CSS</option>
           <option value="3">Evaluación 3 - Mantenimiento de PC</option>
@@ -73,14 +69,15 @@
         <form id="form-nueva-pregunta" class="space-y-4">
           <div>
             <label class="block font-medium mb-1">Texto de la pregunta</label>
-            <input type="text" id="texto-pregunta"
-              class="w-full border rounded px-3 py-2 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 dark:bg-gray-700 dark:border-none"
+            <input type="text" id="texto-pregunta" placeholder="Ingresa tu pregunta"
+              class="w-full placeholder-gray-400 border-gray-200 border rounded px-3 py-2 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 dark:bg-gray-700 dark:border-none"
               required />
           </div>
 
           <div id="opciones-container" class="space-y-2"></div>
 
-          <button type="submit" class="bg-sky-500 hover:bg-sky-600 dark:bg-sky-600 dark:hover:bg-sky-700 font-semibold text-white px-4 py-2 rounded-md transition duration-200">
+          <button type="submit"
+            class="bg-sky-500 hover:bg-sky-600 dark:bg-sky-600 dark:hover:bg-sky-700 font-semibold text-white px-4 py-2 rounded-md transition duration-200">
             Agregar Pregunta
           </button>
         </form>
@@ -89,7 +86,7 @@
   </section>
 
   <!-- Modal para editar pregunta -->
-  <div id="modal-editar" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+  <div id="modal-editar" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
     <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg dark:bg-gray-800">
       <h2 class="text-xl font-semibold text-sky-500 mb-4 dark:text-sky-400">Editar Pregunta</h2>
       <form id="form-editar-pregunta" class="space-y-4">
@@ -97,7 +94,7 @@
         <div>
           <label class="block font-medium mb-1">Texto de la pregunta</label>
           <input type="text" id="edit-texto-pregunta"
-            class="w-full border rounded px-3 py-2 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 dark:bg-gray-700 dark:border-none"
+            class="w-full border-gray-200 border rounded px-3 py-2 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 dark:bg-gray-700 dark:border-none"
             required />
         </div>
         <div id="edit-opciones-container" class="space-y-2"></div>
@@ -133,7 +130,7 @@
     for (let i = 0; i < 4; i++) {
       contenedor.innerHTML += `
           <div class="flex items-center gap-2">
-            <input type="text" class="opcion-texto w-full border rounded dark:bg-gray-700 dark:border-none px-3 py-1 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500" placeholder="Opción ${i + 1}" required />
+            <input type="text" class="opcion-texto w-full border-gray-200 border rounded dark:bg-gray-700 dark:border-none px-3 py-1 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 placeholder-gray-400" placeholder="Opción ${i + 1}" required />
             <label class="flex items-center gap-1 dark:text-gray-200">
               <input type="radio" name="correcta" value="${i}" required />
               Correcta
@@ -169,7 +166,7 @@
       p.opciones.forEach(o => {
         const li = document.createElement('li');
         li.textContent = o.texto; // <-- textContent evita interpretar HTML
-        li.className ='dark:text-gray-200';
+        li.className = 'dark:text-gray-200';
 
         if (o.es_correcta) {
           const span = document.createElement('span');
@@ -248,7 +245,7 @@
     pregunta.opciones.forEach((op, i) => {
       contenedor.innerHTML += `
       <div class="flex items-center gap-2">
-        <input type="text" class="edit-opcion-texto w-full dark:bg-gray-700 dark:border-none dark:text-gray-200 border rounded px-3 py-1 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500" value="${op.texto}" data-id="${op.id_opcion}" required />
+        <input type="text" class="edit-opcion-texto border-gray-200 w-full dark:bg-gray-700 dark:border-none dark:text-gray-200 border rounded px-3 py-1 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500" value="${op.texto}" data-id="${op.id_opcion}" required />
         <label class="flex items-center gap-1">
           <input type="radio" name="edit-correcta" value="${i}" ${op.es_correcta ? 'checked' : ''} />
           Correcta

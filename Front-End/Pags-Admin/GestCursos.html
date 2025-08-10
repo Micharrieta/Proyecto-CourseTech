@@ -4,13 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-        }
-    </script>
+    <link href="../dist/output.css" rel="stylesheet">
     <title>Gestionar cursos</title>
 </head>
 
@@ -96,11 +90,11 @@
         cursos.forEach(curso => {
             const tr = document.createElement('tr');
             tr.innerHTML = `
-      <td class="border px-2 py-1">${curso.id_curso}</td>
-      <td class="border px-2 py-1">${curso.titulo}</td>
-      <td class="border px-2 py-1">${curso.descripcion}</td>
-      <td class="border px-2 py-1">${curso.visible ? 'Visible' : 'Oculto'}</td>
-      <td class="border px-2 py-1">
+      <td class="border-gray-200 border px-2 py-1">${curso.id_curso}</td>
+      <td class="border-gray-200 border px-2 py-1">${curso.titulo}</td>
+      <td class="border-gray-200 border px-2 py-1">${curso.descripcion}</td>
+      <td class="border-gray-200 border px-2 py-1">${curso.visible ? 'Visible' : 'Oculto'}</td>
+      <td class="border-gray-200 border px-2 py-1">
         <button class="bg-sky-500 hover:bg-sky-600 dark:bg-gray-600 dark:text-sky-400 dark:hover:bg-gray-700 transition duration-200 text-white text-sm px-2 py-1 rounded"
           onclick="cambiarVisibilidad(${curso.id_curso})">
           ${curso.visible ? 'Ocultar' : 'Mostrar'}

@@ -4,12 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-        }
-    </script>
+      <link href="./dist/output.css" rel="stylesheet">
     <title>Foro - Curso 2</title>
 </head>
 
@@ -67,7 +62,7 @@
             <form id="form-mensaje" class="bg-white p-6 rounded shadow-md dark:bg-gray-800">
                 <h2 class="text-2xl text-sky-500 font-semibold mb-4 dark:text-sky-400">Participar en el foro</h2>
                 <textarea id="mensaje" rows="4"
-                    class="w-full border rounded dark:border-none dark:bg-gray-600 px-4 py-2 mb-4 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500"
+                    class="w-full border-gray-200 border rounded dark:border-none dark:bg-gray-600 px-4 py-2 mb-4 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500"
                     placeholder="Escribe tu mensaje aquí..." required></textarea>
                 <button type="submit"
                     class="bg-sky-500 hover:bg-sky-600 text-white font-semibold px-4 py-2 rounded-md">Enviar

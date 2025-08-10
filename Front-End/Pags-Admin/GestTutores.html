@@ -5,12 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-        }
-    </script>
+    <link href="../dist/output.css" rel="stylesheet">
     <title>Gestionar tutores</title>
 </head>
 
@@ -109,23 +104,23 @@
 
             if (parseInt(user.id_rol) === 2) {
                 tr.innerHTML = `
-                    <td class="border px-2 py-1">${user.id_usuario}</td>
-                    <td class="border px-2 py-1">${user.nombres}</td>
-                    <td class="border px-2 py-1">${user.apellidos}</td>
-                    <td class="border px-2 py-1">${user.celular}</td>
-                    <td class="border px-2 py-1">${user.email}</td>
-                    <td class="border px-2 py-1">${nombreRol}</td>
-                    <td class="border px-2 py-1 text-green-600 dark:text-green-400 font-medium">Tutor</td>
+                    <td class="border-gray-200 border px-2 py-1">${user.id_usuario}</td>
+                    <td class="border-gray-200 border px-2 py-1">${user.nombres}</td>
+                    <td class="border-gray-200 border px-2 py-1">${user.apellidos}</td>
+                    <td class="border-gray-200 border px-2 py-1">${user.celular}</td>
+                    <td class="border-gray-200 border px-2 py-1">${user.email}</td>
+                    <td class="border-gray-200 border px-2 py-1">${nombreRol}</td>
+                    <td class="border-gray-200 border px-2 py-1 text-green-600 dark:text-green-400 font-medium">Tutor</td>
                 `;
             } else {
                 tr.innerHTML = `
-                    <td class="border px-2 py-1">${user.id_usuario}</td>
-                    <td class="border px-2 py-1">${user.nombres}</td>
-                    <td class="border px-2 py-1">${user.apellidos}</td>
-                    <td class="border px-2 py-1">${user.celular}</td>
-                    <td class="border px-2 py-1">${user.email}</td>
-                    <td class="border px-2 py-1">${nombreRol}</td>
-                    <td class="border px-2 py-1">
+                    <td class="border-gray-200 border px-2 py-1">${user.id_usuario}</td>
+                    <td class="border-gray-200 border px-2 py-1">${user.nombres}</td>
+                    <td class="border-gray-200 border px-2 py-1">${user.apellidos}</td>
+                    <td class="border-gray-200 border px-2 py-1">${user.celular}</td>
+                    <td class="border-gray-200 border px-2 py-1">${user.email}</td>
+                    <td class="border-gray-200 border px-2 py-1">${nombreRol}</td>
+                    <td class="border-gray-200 border px-2 py-1">
                         <button class="text-orange-600 dark:text-orange-400 hover:underline" onclick="transformarEnTutor(${user.id_usuario})">Cambiar a tutor</button>
 
                     </td>

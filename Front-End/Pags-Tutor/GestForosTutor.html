@@ -5,12 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-        }
-    </script>
+    <link href="../dist/output.css" rel="stylesheet">
     <title>Gestionar foros</title>
 </head>
 
@@ -57,11 +52,11 @@
         </div>
     </section>
 
-    <section class="px-[5%]">
+    <section class="px-[5%] mb-10">
         <div class="container mx-auto">
             <label for="foro-select" class="block text-lg font-medium text-gray-800 dark:text-white mb-2">Seleccionar Foro</label>
             <select id="foro-select"
-                class="border rounded mb-8 px-3 py-2 dark:bg-gray-700 dark:border-none focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500">
+                class="bg-white border-gray-200 border rounded mb-8 px-3 py-2 dark:bg-gray-700 dark:border-none focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500">
                 <option value="1">Foro 1 - Ofimática</option>
                 <option value="2">Foro 2 - Diseño web</option>
                 <option value="3">Foro 3 - Mantenimiento de PC</option>
@@ -69,7 +64,7 @@
 
             <table id="tabla-mensajes" class="w-full table-auto border-collapse">
                 <thead>
-                    <tr class="bg-sky-100 text-left text-sm font-semibold dark:bg-gray-700 text-center">
+                    <tr class="bg-sky-100 text-left text-sm font-semibold dark:bg-gray-700">
                         <th class="border border-sky-300 text-sky-600 px-2 py-1 dark:border-white dark:text-white">ID Usuario</th>
                         <th class="border border-sky-300 text-sky-600 px-2 py-1 dark:border-white dark:text-white">Nombres</th>
                         <th class="border border-sky-300 text-sky-600 px-2 py-1 dark:border-white dark:text-white">Apellidos</th>
@@ -119,12 +114,12 @@
         mensajes.forEach(m => {
             const fila = document.createElement('tr');
             fila.innerHTML = `
-                <td class="px-4 py-2 border">${m.id_usuario}</td>
-                <td class="px-4 py-2 border">${m.nombres}</td>
-                <td class="px-4 py-2 border">${m.apellidos}</td>
-                <td class="px-4 py-2 border">${m.mensaje}</td>
-                <td class="px-4 py-2 border">${new Date(m.fecha).toLocaleString()}</td>
-                <td class="px-4 py-2 border">
+                <td class="border-gray-200 px-4 py-2 border">${m.id_usuario}</td>
+                <td class="border-gray-200 px-4 py-2 border">${m.nombres}</td>
+                <td class="border-gray-200 px-4 py-2 border">${m.apellidos}</td>
+                <td class="border-gray-200 px-4 py-2 border">${m.mensaje}</td>
+                <td class="border-gray-200 px-4 py-2 border">${new Date(m.fecha).toLocaleString()}</td>
+                <td class="border-gray-200 px-4 py-2 border">
                   <button onclick="eliminarMensaje(${m.id_mensaje})" class="text-red-600 dark:text-red-400 hover:underline">Eliminar</button>
                 </td>
             `;

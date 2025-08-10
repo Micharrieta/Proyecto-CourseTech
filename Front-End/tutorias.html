@@ -4,12 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-        }
-    </script>
+      <link href="./dist/output.css" rel="stylesheet">
     <title>Tutorias</title>
 </head>
 
@@ -20,7 +15,6 @@
     <section id="desc-tutoria" class="px-[5%] py-8 md:py-10 lg:py-12">
         <div class="container mx-auto">
             <div class="flex items-center justify-between flex-wrap w-full gap-4">
-                <!-- Título a la izquierda -->
                 <h1
                     class="bg-gradient-to-r from-sky-500 via-sky-600 to-sky-500 inline-block text-transparent bg-clip-text text-7xl font-bold">
                     Tutorías
@@ -213,12 +207,12 @@
 
     <!-- Modal de confirmación -->
     <div id="modal-confirmacion"
-        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
         <div class="bg-white rounded-lg shadow-lg p-8 max-w-sm text-center dark:bg-gray-800">
             <div class="flex justify-center mb-4">
                 <img src="icons/check.svg" class="h-12 w-12">
             </div>
-            <h3 class="text-xl font-semibold text-gray-200 dark:text-white mb-2">¡Solicitud enviada!</h3>
+            <h3 class="text-xl text-sky-500 font-semibold  dark:text-white mb-2">¡Solicitud enviada!</h3>
             <p class="text-gray-600 dark:text-gray-300 mb-6">Tu solicitud de tutoría ha sido registrada correctamente. Pronto recibirás un
                 correo con los detalles de tu sesión de tutoría.</p>
             <button onclick="cerrarModal()"

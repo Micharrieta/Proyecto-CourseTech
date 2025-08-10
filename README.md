@@ -72,9 +72,17 @@ npm install dotenv
 npm install nodemailer
 ```
 
+Para ejecutar tailwind y poder editar el front-end se deben instalar las siguientes dependencias dentro del directorio "Front-End"
+
+```
+npm install tailwindcss @tailwindcss/cli
+
+npm install @midudev/tailwind-animations
+```
+
 ### Paso 5: Ejecutar Back-end y Front-end
 
-Para correr el backend ejecuta los siguientes comandos.
+Para correr el backend ejecuta en tu terminal preferida los siguientes comandos.
 
 ```
 cd Api-Backend
@@ -85,7 +93,14 @@ Por defecto empezara a correr en el puerto 5000
 
 <br>
 
-Para ejecutar el front-end simplemente abre live server en el archivo 'index.html'.
+Para ejecutar el front-end y poder editarlo usando Tailwind CLI ejecuta en otra terminal los siguientes comandos.
+
+```
+cd Front-End
+npm run dev
+```
+
+Luego, simplemente abre live server en el archivo 'index.html'.
 
 ## ADICIONAL
 

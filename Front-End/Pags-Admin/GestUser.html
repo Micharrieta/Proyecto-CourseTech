@@ -5,12 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-        }
-    </script>
+      <link href="../dist/output.css" rel="stylesheet">
     <title>Gestionar Usuarios</title>
 </head>
 
@@ -111,13 +106,13 @@
 
             const tr = document.createElement('tr');
             tr.innerHTML = `
-      <td class="border px-2 py-1">${user.id_usuario}</td>
-      <td class="border px-2 py-1">${user.nombres}</td>
-        <td class="border px-2 py-1">${user.apellidos}</td>
-        <td class="border px-2 py-1">${user.celular}</td>
-      <td class="border px-2 py-1">${user.email}</td>
-      <td class="border px-2 py-1">${nombreRol}</td>
-      <td class="border px-2 py-1">
+      <td class="border-gray-200 border px-2 py-1">${user.id_usuario}</td>
+      <td class="border-gray-200 border px-2 py-1">${user.nombres}</td>
+        <td class="border-gray-200 border px-2 py-1">${user.apellidos}</td>
+        <td class="border-gray-200 border px-2 py-1">${user.celular}</td>
+      <td class="border-gray-200 border px-2 py-1">${user.email}</td>
+      <td class="border-gray-200 border px-2 py-1">${nombreRol}</td>
+      <td class="border-gray-200 border px-2 py-1">
         <button class="text-sky-600 hover:underline mr-2 dark:text-sky-400" onclick="editarUsuario(${user.id_usuario}, '${user.nombres}', '${user.apellidos}', '${user.celular}', '${user.email}', ${user.id_rol})">Editar</button>
         <button class="text-red-600 hover:underline dark:text-red-400" onclick="eliminarUsuario(${user.id_usuario})">Eliminar</button>
         </td>
