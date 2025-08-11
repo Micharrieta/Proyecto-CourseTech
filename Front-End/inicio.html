@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link href="./dist/output.css" rel="stylesheet">
+    <link href="./dist/output.css" rel="stylesheet">
     <title>Inicio</title>
 </head>
 
@@ -12,15 +12,15 @@
 
     <section id="titulo-inicio" class="px-[5%] py-16 md:py-24 lg:py-16 mx-auto">
         <div class="container mx-auto">
-            <div class="flex justify-between items-center flex-wrap gap-4">
+            <div class="flex justify-between items-center">
                 <h1 id="saludo"
-                    class="py-3 bg-gradient-to-r from-sky-500 via-sky-600 to-sky-500 inline-block text-transparent bg-clip-text mb-5 text-4xl font-bold md:mb-6 md:text-5xl lg:text-6xl">
+                    class="py-3 bg-gradient-to-r from-sky-500 via-sky-600 to-sky-500 inline-block text-transparent bg-clip-text mb-5 text-4xl font-bold md:mb-6 md:text-5xl lg:text-6xl animate-fade-in-right animate-steps-modern animate-duration-400">
                     ¡Bienvenido(a)!
                 </h1>
 
                 <div class="flex items-center gap-2">
 
-                    <button onclick ="cerrarSesion()"
+                    <button onclick="cerrarSesion()"
                         class="group flex items-center justify-start w-11 h-11 bg-red-600 rounded-lg cursor-pointer relative overflow-hidden transition-all duration-200 shadow-lg hover:w-32 hover:rounded-lg active:translate-x-1 active:translate-y-1">
                         <div
                             class="flex items-center justify-center w-full transition-all duration-300 group-hover:justify-start group-hover:px-3">
@@ -49,13 +49,13 @@
         </div>
     </section>
 
-    <section id="cont-inicio" class="px-[5%]">
+    <section id="cont-inicio" class="px-[5%] mb-12">
         <div class="container mx-auto">
 
             <div
                 class="grid grid-cols-1 items-start justify-center gap-y-12 md:grid-cols-2 md:gap-x-8 md:gap-y-14 lg:grid-cols-4 lg:gap-y-16">
 
-                <div id="card1" class="flex flex-col shadow-2xl p-5 rounded-md bg-white dark:bg-gray-800">
+                <div id="card1" class="flex flex-col shadow-2xl p-5 rounded-md bg-white dark:bg-gray-800 animate-fade-in-down animate-duration-300">
                     <img class="mb-5 h-48 w-full object-cover rounded-xl md:mb-6" src="./images/inicio-cursos.png" />
                     <h3 class="mb-3 text-xl font-bold md:mb-4 md:text-2xl ">Cursos</h3>
                     <p class="dark:text-gray-300">
@@ -73,7 +73,7 @@
                     </div>
                 </div>
 
-                <div id="card2" class="flex flex-col shadow-2xl p-5 rounded-md bg-white dark:bg-gray-800">
+                <div id="card2" class="flex flex-col shadow-2xl p-5 rounded-md bg-white dark:bg-gray-800 animate-fade-in-down animate-delay-300 animate-duration-300">
                     <img class="mb-5 h-48 w-full object-cover rounded-xl md:mb-6" src="./images/inicio-tests.png" />
                     <h3 class="mb-3 text-xl font-bold md:mb-4 md:text-2xl">Evaluaciones</h3>
                     <p class="dark:text-gray-300">
@@ -91,7 +91,7 @@
                     </div>
                 </div>
 
-                <div id="card3" class="flex flex-col shadow-2xl p-5 rounded-md bg-white dark:bg-gray-800">
+                <div id="card3" class="flex flex-col shadow-2xl p-5 rounded-md bg-white dark:bg-gray-800 animate-fade-in-down animate-delay-500 animate-duration-300">
                     <img class="mb-5 h-48 w-full object-cover rounded-xl md:mb-6" src="./images/inicio-tutorias.jpeg" />
                     <h3 class="mb-3 text-xl font-bold md:mb-4 md:text-2xl">Tutorías</h3>
                     <p class="dark:text-gray-300">
@@ -109,7 +109,7 @@
                     </div>
                 </div>
 
-                <div id="card4" class="flex flex-col shadow-2xl p-5 rounded-md bg-white dark:bg-gray-800">
+                <div id="card4" class="flex flex-col shadow-2xl p-5 rounded-md bg-white dark:bg-gray-800 animate-fade-in-down animate-delay-700 animate-duration-300">
                     <img class="mb-5 h-48 w-full object-cover rounded-xl md:mb-6" src="./images/inicio-foros.png" />
                     <h3 class="mb-3 text-xl font-bold md:mb-4 md:text-2xl">Foros</h3>
                     <p class="dark:text-gray-300">
@@ -150,7 +150,13 @@
             const data = await res.json();
             if (res.ok) {
                 const primerNombre = data.nombres.split(' ')[0];
-                document.getElementById('saludo').innerText = `¡Bienvenido(a) ${primerNombre}!`;
+                const saludoEl = document.getElementById('saludo');
+
+                saludoEl.classList.remove('animate-fade-in-right'); 
+                void saludoEl.offsetWidth;
+                saludoEl.innerText = `¡Bienvenido(a) ${primerNombre}!`;
+                saludoEl.classList.add('animate-fade-in-right');
+
             } else {
                 alert('Error al cargar usuario: ' + data.error);
                 window.location.href = '../login.html';
