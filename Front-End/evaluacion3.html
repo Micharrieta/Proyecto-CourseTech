@@ -6,6 +6,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="./dist/output.css" rel="stylesheet">
+  <script src="animaciones.js"></script>
   <title>Evaluación 3</title>
 </head>
 
@@ -55,11 +56,11 @@
   <section id="evaluacion" class="px-[5%] pb-16">
 
     <div class="container mx-auto">
-      <div id="preguntas" class="mx-auto">
+      <div id="preguntas" class="mx-auto opacity-0">
 
       </div>
 
-      <form id="form-evaluacion" class="mx-auto">
+      <form id="form-evaluacion" class="mx-auto opacity-0">
         <div id="resultado" class="mt-6 text-2xl font-bold text-center text-green-600 hidden">
         </div>
 
@@ -72,8 +73,8 @@
     </div>
 
     <a href="tests.html">
-      <button
-        class="mt-4 bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-200">
+      <button id="salir"
+        class="mt-4 bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-200 opacity-0">
         Salir
       </button>
     </a>
@@ -86,6 +87,17 @@
 </body>
 
 <script>
+  if (window.innerWidth < 768) {
+    animationOutViewport('#preguntas', 'animate-fade-in-right animate-duration-500')
+    animationOutViewport('#form-evaluacion', 'animate-pulse-fade-in animate-duration-500 animate-delay-100')
+    animationOutViewport('#salir', 'animate-pulse-fade-in animate-duration-700 animate-delay-500')
+
+  } else {
+    animationOutViewport('#preguntas', 'animate-fade-in-down animate-duration-500 animate-steps-modern')
+    animationOutViewport('#form-evaluacion', 'animate-pulse-fade-in animate-duration-700 animate-delay-500')
+    animationOutViewport('#salir', 'animate-pulse-fade-in animate-duration-700 animate-delay-500')
+  }
+
   const idEvaluacion = 3; // Cambia según la evaluación
   const token = localStorage.getItem('token');
 
@@ -211,7 +223,7 @@
     window.location.href = 'index.html';
   }
 
-  
+
   function volverIncio() {
     window.location.href = 'inicio.html';
   }
