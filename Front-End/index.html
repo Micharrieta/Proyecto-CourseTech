@@ -2,6 +2,7 @@
 <html lang="es" class="">
 
 <head>
+  <script src="theme.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="animaciones.js"></script>
@@ -345,24 +346,6 @@
 <script> 
     animationOutViewport('.card-landing', 'animate-fade-in-down');
     animationOutViewport('.info-3', 'animate-fade-in');
-
-    const toggle = document.getElementById('toggleDark');
-    const html = document.documentElement;
-
-    toggle.addEventListener('click', () => {
-        html.classList.toggle('dark');
-        localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
-    });
-
-    if (
-        localStorage.theme === 'dark' ||
-        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-    ) {
-        document.documentElement.classList.add('dark');
-    } else {
-        document.documentElement.classList.remove('dark');
-    }
 </script>
-
 
 </html>

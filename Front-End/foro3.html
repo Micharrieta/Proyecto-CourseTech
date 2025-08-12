@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+  <script src="theme.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link href="./dist/output.css" rel="stylesheet">
@@ -62,7 +63,7 @@
             <form id="form-mensaje" class="bg-white p-6 rounded shadow-md dark:bg-gray-800">
                 <h2 class="text-2xl text-sky-500 dark:text-sky-400 font-semibold mb-4">Participar en el foro</h2>
                 <textarea id="mensaje" rows="4"
-                    class="w-full border-gray-200 dark:bg-gray-600 dark:border-none border rounded px-4 py-2 mb-4 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500"
+                    class="w-full border-gray-200 dark:bg-gray-600 dark:border-none border rounded px-4 py-2 mb-4 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 placeholder-gray-400"
                     placeholder="Escribe tu mensaje aquí..." required></textarea>
                 <button type="submit"
                     class="bg-sky-500 hover:bg-sky-600 text-white font-semibold px-4 py-2 rounded-md">Enviar
@@ -151,24 +152,7 @@
         window.location.href = 'index.html';
     }
 
-    const toggle = document.getElementById('toggleDark');
-    const html = document.documentElement;
-
-    toggle.addEventListener('click', () => {
-        html.classList.toggle('dark');
-        localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
-    });
-
-    // Establecer el tema al cargar
-    if (
-        localStorage.theme === 'dark' ||
-        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-    ) {
-        document.documentElement.classList.add('dark');
-    } else {
-        document.documentElement.classList.remove('dark');
-    }
-
+    
     function volverIncio() {
         window.location.href = 'inicio.html';
     }

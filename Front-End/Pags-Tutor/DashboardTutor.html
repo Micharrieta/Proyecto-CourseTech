@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+  <script src="../theme.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard de Estadísticas</title>
@@ -166,24 +167,7 @@
         localStorage.removeItem('token');
         window.location.href = '../index.html';
     }
-    const toggle = document.getElementById('toggleDark');
-    const html = document.documentElement;
-
-    toggle.addEventListener('click', () => {
-        html.classList.toggle('dark');
-        localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
-    });
-
-    // Establecer el tema al cargar
-    if (
-        localStorage.theme === 'dark' ||
-        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-    ) {
-        document.documentElement.classList.add('dark');
-    } else {
-        document.documentElement.classList.remove('dark');
-    }
-
+    
     function volverIncio() {
         window.location.href = '../Pags-Tutor/PanelTutor.html';
     }
