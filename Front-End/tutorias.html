@@ -4,11 +4,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link href="./dist/output.css" rel="stylesheet">
+    <script src="animaciones.js"></script>
+    <link href="./dist/output.css" rel="stylesheet">
     <title>Tutorias</title>
 </head>
-
-
 
 <body class="bg-white text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
 
@@ -57,7 +56,7 @@
         </div>
     </section>
 
-    <section id="detalle-tutoria" class="mb-3 px-[5%] py-8 md:py-10 lg:py-12">
+    <section id="detalle-tutoria" class="mb-3 px-[5%] py-8 md:py-10 lg:py-12 opacity-0">
         <div class="container mx-auto">
             <div
                 class="grid grid-cols-1 gap-y-12 md:grid-flow-row md:grid-cols-2 md:items-center md:gap-x-12 lg:gap-x-20">
@@ -112,7 +111,7 @@
 
 
 
-    <section id="contacto" class="mt-4 px-[5%] py-16 md:py-24 lg:py-28">
+    <section id="contacto" class="mt-4 px-[5%] py-16 md:py-24 lg:py-28 opacity-0    ">
         <div class="container mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-2">
                 <div class="mb-8 w-full max-w-lg md:mb-10 lg:mb-12 p-10 dark:bg-gray-800 rounded-lg">
@@ -134,7 +133,7 @@
                                 <label class="mb-2 block font-medium" for="nombre">Nombres*</label>
                                 <div class="relative flex w-full items-center">
                                     <input type="text"
-                                        class="w-full focus:border-sky-500 border border-gray-300 bg-white min-h-11 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-500 dark:text-black"
+                                        class="w-full focus:border-sky-500 border border-gray-300 bg-white min-h-11 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-500 dark:bg-gray-700 dark:border-none"
                                         id="nombres" required />
                                 </div>
                             </div>
@@ -143,7 +142,7 @@
                                 <label class="mb-2 block font-medium" for="apellidos">Apellidos*</label>
                                 <div class="relative flex w-full items-center">
                                     <input type="text"
-                                        class="w-full focus:border-sky-500 border border-gray-300 bg-white min-h-11 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-500 dark:text-black"
+                                        class="w-full focus:border-sky-500 border border-gray-300 bg-white min-h-11 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-500 dark:bg-gray-700 dark:border-none"
                                         id="apellidos" required />
                                 </div>
                             </div>
@@ -154,7 +153,7 @@
                                 <label class="mb-2 block font-medium" for="email">Email*</label>
                                 <div class="relative flex w-full items-center">
                                     <input type="email"
-                                        class="w-full focus:border-sky-500 border border-gray-300 bg-white min-h-11 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-500 dark:text-black"
+                                        class="w-full focus:border-sky-500 border border-gray-300 bg-white min-h-11 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-500 dark:bg-gray-700 dark:border-none"
                                         id="email" required />
                                 </div>
                             </div>
@@ -162,7 +161,7 @@
                                 <label class="mb-2 block font-medium" for="celular">Celular*</label>
                                 <div class="relative flex w-full items-center">
                                     <input type="tel"
-                                        class="w-full focus:border-sky-500 border border-gray-300 bg-white min-h-11 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-500 dark:text-black"
+                                        class="w-full focus:border-sky-500 border border-gray-300 bg-white min-h-11 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-500 dark:bg-gray-700 dark:border-none"
                                         id="celular" required />
                                 </div>
                             </div>
@@ -173,7 +172,7 @@
                                 curso*
                             </label>
                             <select id="curso"
-                                class="w-full focus:border-sky-500 border border-gray-300 bg-white min-h-11 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-500 dark:text-black">
+                                class="w-full focus:border-sky-500 border border-gray-300 bg-white min-h-11 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-500 dark:bg-gray-700 dark:border-none">
                                 <option value="1">Curso 1 - Ofimática</option>
                                 <option value="2">Curso 2 - Diseño web</option>
                                 <option value="3">Curso 3 - Mantenimiento de PC</option>
@@ -184,7 +183,7 @@
                         <div class="grid w-full items-center">
                             <label class="mb-2 block font-medium" for="message">Mensaje (opcional)</label>
                             <textarea
-                                class="w-full focus:border-sky-500 border border-gray-300 bg-white min-h-11 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-500 dark:text-black"
+                                class="w-full focus:border-sky-500 border border-gray-300 bg-white min-h-11 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-500 dark:bg-gray-700 dark:border-none placeholder-gray-400"
                                 id="mensaje" placeholder="Escribe tu mensaje..."></textarea>
                         </div>
 
@@ -199,21 +198,21 @@
 
                 </div>
 
-                <div class="pt-16" id="image">
+                <div class="hidden md:block pt-16" id="image">
                     <img src="images/tutoria.png" class="w-full rounded-lg object-cover" />
                 </div>
             </div>
     </section>
 
     <!-- Modal de confirmación -->
-    <div id="modal-confirmacion"
-        class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+    <div id="modal-confirmacion" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
         <div class="bg-white rounded-lg shadow-lg p-8 max-w-sm text-center dark:bg-gray-800">
             <div class="flex justify-center mb-4">
                 <img src="icons/check.svg" class="h-12 w-12">
             </div>
             <h3 class="text-xl text-sky-500 font-semibold  dark:text-white mb-2">¡Solicitud enviada!</h3>
-            <p class="text-gray-600 dark:text-gray-300 mb-6">Tu solicitud de tutoría ha sido registrada correctamente. Pronto recibirás un
+            <p class="text-gray-600 dark:text-gray-300 mb-6">Tu solicitud de tutoría ha sido registrada correctamente.
+                Pronto recibirás un
                 correo con los detalles de tu sesión de tutoría.</p>
             <button onclick="cerrarModal()"
                 class="bg-sky-500 hover:bg-sky-600 font-semibold text-white px-4 py-2 rounded-lg transition duration-200">
@@ -223,29 +222,22 @@
     </div>
 
     <script>
-        const toggle = document.getElementById('toggleDark');
-        const html = document.documentElement;
 
-        toggle.addEventListener('click', () => {
-            html.classList.toggle('dark');
-            localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
-        });
-
-        // Establecer el tema al cargar
-        if (
-            localStorage.theme === 'dark' ||
-            (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-        ) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
     </script>
 
 
 </body>
 
 <script>
+
+    if (window.innerWidth < 768) {
+        animationOutViewport('#detalle-tutoria', 'animate-fade-in-down')
+        animationOutViewport('#contacto', 'animate-pulse-fade-in')
+    } else {
+        animationOutViewport('#detalle-tutoria', 'animate-fade-in-down animate-duration-300')
+        animationOutViewport('#contacto', 'animate-pulse-fade-in')
+    }
+
     document.getElementById('form-tutoria').addEventListener('submit', async e => {
         e.preventDefault();
         const datos = {
@@ -297,6 +289,25 @@
 
     function volverIncio() {
         window.location.href = 'inicio.html';
+    }
+
+
+    const toggle = document.getElementById('toggleDark');
+    const html = document.documentElement;
+
+    toggle.addEventListener('click', () => {
+        html.classList.toggle('dark');
+        localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+    });
+
+    // Establecer el tema al cargar
+    if (
+        localStorage.theme === 'dark' ||
+        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark');
     }
 </script>
 

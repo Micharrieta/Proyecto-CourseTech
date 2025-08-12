@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="animaciones.js"></script>
     <link href="./dist/output.css" rel="stylesheet">
     <title>Inicio</title>
 </head>
@@ -55,7 +56,7 @@
             <div
                 class="grid grid-cols-1 items-start justify-center gap-y-12 md:grid-cols-2 md:gap-x-8 md:gap-y-14 lg:grid-cols-4 lg:gap-y-16">
 
-                <div id="card1" class="flex flex-col shadow-2xl p-5 rounded-md bg-white dark:bg-gray-800 animate-fade-in-down animate-duration-300">
+                <div id="card1" class="flex flex-col shadow-2xl p-5 rounded-md bg-white dark:bg-gray-800 opacity-0">
                     <img class="mb-5 h-48 w-full object-cover rounded-xl md:mb-6" src="./images/inicio-cursos.png" />
                     <h3 class="mb-3 text-xl font-bold md:mb-4 md:text-2xl ">Cursos</h3>
                     <p class="dark:text-gray-300">
@@ -73,7 +74,7 @@
                     </div>
                 </div>
 
-                <div id="card2" class="flex flex-col shadow-2xl p-5 rounded-md bg-white dark:bg-gray-800 animate-fade-in-down animate-delay-300 animate-duration-300">
+                <div id="card2" class="flex flex-col shadow-2xl p-5 rounded-md bg-white dark:bg-gray-800 opacity-0">
                     <img class="mb-5 h-48 w-full object-cover rounded-xl md:mb-6" src="./images/inicio-tests.png" />
                     <h3 class="mb-3 text-xl font-bold md:mb-4 md:text-2xl">Evaluaciones</h3>
                     <p class="dark:text-gray-300">
@@ -91,7 +92,7 @@
                     </div>
                 </div>
 
-                <div id="card3" class="flex flex-col shadow-2xl p-5 rounded-md bg-white dark:bg-gray-800 animate-fade-in-down animate-delay-500 animate-duration-300">
+                <div id="card3" class="flex flex-col shadow-2xl p-5 rounded-md bg-white dark:bg-gray-800 opacity-0">
                     <img class="mb-5 h-48 w-full object-cover rounded-xl md:mb-6" src="./images/inicio-tutorias.jpeg" />
                     <h3 class="mb-3 text-xl font-bold md:mb-4 md:text-2xl">Tutorías</h3>
                     <p class="dark:text-gray-300">
@@ -109,7 +110,7 @@
                     </div>
                 </div>
 
-                <div id="card4" class="flex flex-col shadow-2xl p-5 rounded-md bg-white dark:bg-gray-800 animate-fade-in-down animate-delay-700 animate-duration-300">
+                <div id="card4" class="flex flex-col shadow-2xl p-5 rounded-md bg-white dark:bg-gray-800 opacity-0">
                     <img class="mb-5 h-48 w-full object-cover rounded-xl md:mb-6" src="./images/inicio-foros.png" />
                     <h3 class="mb-3 text-xl font-bold md:mb-4 md:text-2xl">Foros</h3>
                     <p class="dark:text-gray-300">
@@ -132,6 +133,19 @@
 </body>
 
 <script>
+    if (window.innerWidth < 768) {
+        animationOutViewport('#card1', 'animate-fade-in-down')
+        animationOutViewport('#card2', 'animate-fade-in-down')
+        animationOutViewport('#card3', 'animate-fade-in-down')
+        animationOutViewport('#card4', 'animate-fade-in-down')
+
+    } else {
+        animationOutViewport('#card1', 'animate-fade-in-down animate-duration-300')
+        animationOutViewport('#card2', 'animate-fade-in-down animate-delay-300 animate-duration-300')
+        animationOutViewport('#card3', 'animate-fade-in-down animate-delay-500 animate-duration-300')
+        animationOutViewport('#card4', 'animate-fade-in-down animate-delay-700 animate-duration-300')
+    }
+
     document.addEventListener('DOMContentLoaded', async () => {
         const token = localStorage.getItem('token');
         if (!token) {
@@ -152,11 +166,10 @@
                 const primerNombre = data.nombres.split(' ')[0];
                 const saludoEl = document.getElementById('saludo');
 
-                saludoEl.classList.remove('animate-fade-in-right'); 
-                void saludoEl.offsetWidth;
+                saludoEl.classList.remove('animate-fade-in-right');
+                void saludoEl.offsetWidth; 
                 saludoEl.innerText = `¡Bienvenido(a) ${primerNombre}!`;
                 saludoEl.classList.add('animate-fade-in-right');
-
             } else {
                 alert('Error al cargar usuario: ' + data.error);
                 window.location.href = '../login.html';

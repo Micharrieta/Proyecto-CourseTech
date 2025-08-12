@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link href="./dist/output.css" rel="stylesheet">
+    <script src="animaciones.js"></script>
+    <link href="./dist/output.css" rel="stylesheet">
     <title>Foros</title>
 </head>
 
@@ -40,7 +41,7 @@
                         🌓
                     </button>
 
-                     <button onclick="volverIncio()"
+                    <button onclick="volverIncio()"
                         class="w-11 h-11 text-lg p-2 rounded-lg shadow-lg bg-gray-300 dark:bg-gray-700">
                         🏠
                     </button>
@@ -78,7 +79,7 @@
 
             <div class="grid grid-cols-1 items-start gap-y-12 md:grid-cols-3 md:gap-x-8 lg:gap-x-12">
 
-                <div id="card1" class="w-full shadow-xl p-3 rounded-md bg-white dark:bg-gray-800 animate-fade-in-right animate-steps-modern animate-duration-200">
+                <div id="card1" class="w-full shadow-xl p-3 rounded-md bg-white dark:bg-gray-800 opacity-0">
 
                     <div class="mb-3 md:mb-4">
                         <img src="images/curso1-img1.avif" class="w-full h-60 object-cover rounded-lg" />
@@ -94,7 +95,7 @@
                     </a>
                 </div>
 
-                <div id="card2" class="w-full shadow-xl p-3 rounded-md bg-white dark:bg-gray-800 animate-fade-in-right animate-steps-modern animate-duration-200 animate-delay-200">
+                <div id="card2" class="w-full shadow-xl p-3 rounded-md bg-white dark:bg-gray-800 opacity-0">
                     <div class="mb-3 md:mb-4">
                         <img src="images/curso2-img1.png" class="rounded-lg w-full h-60 object-cover" />
                     </div>
@@ -109,7 +110,7 @@
                     </a>
                 </div>
 
-                <div id="card3" class="w-full shadow-xl p-3 rounded-md bg-white dark:bg-gray-800 animate-fade-in-right animate-steps-modern animate-duration-200 animate-delay-400">
+                <div id="card3" class="w-full shadow-xl p-3 rounded-md bg-white dark:bg-gray-800 opacity-0">
                     <div class="mb-3 md:mb-4">
                         <img src="images/curso3-img3.jpg" class="w-full h-60 object-cover rounded-lg" />
                     </div>
@@ -133,6 +134,17 @@
 </body>
 
 <script>
+
+    if (window.innerWidth < 768) {
+        animationOutViewport('#card1', 'animate-fade-in-right')
+        animationOutViewport('#card2', 'animate-fade-in-right')
+        animationOutViewport('#card3', 'animate-fade-in-right')
+    } else {
+        animationOutViewport('#card1', 'animate-fade-in-right animate-steps-modern animate-duration-200')
+        animationOutViewport('#card2', 'animate-fade-in-right animate-steps-modern animate-duration-200 animate-delay-200')
+        animationOutViewport('#card3', 'animate-fade-in-right animate-steps-modern animate-duration-200 animate-delay-400')
+    }
+
     function cerrarSesion() {
         localStorage.removeItem('token');
         window.location.href = 'index.html';

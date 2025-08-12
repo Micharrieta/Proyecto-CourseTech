@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="animaciones.js"></script>
     <link href="./dist/output.css" rel="stylesheet">
     <title>Bienvendo a CourseTech</title>
 </head>
@@ -341,29 +342,9 @@
   
 </body>
 
-<script>
-    function animationOutViewport(clase, animation) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add(animation);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.3 // Porcentaje de aparicion
-        });
-
-        // Seleccionar elementos
-        document.querySelectorAll(clase).forEach(el => {
-            observer.observe(el);
-        });
-    }
-
-    animationOutViewport('.card-landing', 'animate-fade-in-down')
-    animationOutViewport('.info-3', 'animate-fade-in')
-
-
+<script> 
+    animationOutViewport('.card-landing', 'animate-fade-in-down');
+    animationOutViewport('.info-3', 'animate-fade-in');
 
     const toggle = document.getElementById('toggleDark');
     const html = document.documentElement;

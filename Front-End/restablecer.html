@@ -18,11 +18,11 @@
             <div class="relative flex items-center justify-center px-[5vw] py-12 h-full bg-white/70 backdrop-blur-md dark:bg-gray-900">
 
                 <button id="toggleDark"
-                    class="fixed top-4 left-4 w-11 h-11 p-2 rounded-lg shadow-lg bg-gray-300 dark:bg-gray-700">
+                    class="fixed top-4 left-4 z-10 w-11 h-11 p-2 rounded-lg shadow-lg bg-gray-300 dark:bg-gray-700">
                     🌓
                 </button>
 
-                <div class="relative z-10 mx-auto w-full max-w-sm">
+                <div class="relative z-10 mx-auto w-full max-w-sm animate-pulse-fade-in animate-duration-500">
                     <div class="mb-6 text-center md:mb-8">
                         <h1 class="text-7xl font-bold leading-tight md:text-6xl">
                             Reestablecer
@@ -41,7 +41,7 @@
                             </div>
 
                             <input type="password" id="password" required
-                                class="w-full rounded-lg dark:text-black border bg-white border-gray-300 px-3 py-2 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500" />
+                                class="w-full rounded-lg dark:bg-gray-700 dark:border-none border bg-white border-gray-300 px-3 py-2 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500" />
                         </div>
 
                         <button type="submit"
