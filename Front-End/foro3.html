@@ -59,9 +59,9 @@
     <section class="px-[5%] mb-10">
         <div class="container mx-auto">
 
-            <div id="mensajes" class="space-y-4 mb-8"></div>
+            <div id="mensajes" class="space-y-4 mb-8 opacity-0"></div>
 
-            <form id="form-mensaje" class="bg-white p-6 rounded shadow-md dark:bg-gray-800">
+            <form id="form-mensaje" class="bg-white p-6 rounded shadow-md dark:bg-gray-800 opacity-0">
                 <h2 class="text-2xl text-sky-500 dark:text-sky-400 font-semibold mb-4">Participar en el foro</h2>
                 <textarea id="mensaje" rows="4"
                     class="w-full border-gray-200 dark:bg-gray-600 dark:border-none border rounded px-4 py-2 mb-4 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 placeholder-gray-400"
@@ -77,14 +77,19 @@
 </body>
 
 <script>
-    if (window.innerWidth < 768) {
-        animationOutViewport('#mensajes', 'animate-fade-in-right animate-duration-500')
-        animationOutViewport('#form-mensaje', 'animate-pulse-fade-in animate-duration-500 animate-delay-100')
-
-    } else {
-        animationOutViewport('#mensajes', 'animate-fade-in-down animate-duration-500 animate-steps-modern')
-        animationOutViewport('#form-mensaje', 'animate-pulse-fade-in animate-duration-700 animate-delay-500')
-    }
+    window.addEventListener('load', () => {
+        if (window.innerWidth < 768) {
+            setTimeout(() => {
+                animationOutViewport('#mensajes', 'animate-fade-in-right animate-duration-500');
+                animationOutViewport('#form-mensaje', 'animate-pulse-fade-in animate-duration-500 animate-delay-100');
+            }, 400);
+        } else {
+            setTimeout(() => {
+                animationOutViewport('#mensajes', 'animate-fade-in-down animate-duration-500 animate-steps-modern');
+                animationOutViewport('#form-mensaje', 'animate-pulse-fade-in animate-duration-700 animate-delay-500');
+            }, 100);
+        }
+    });
 
     const token = localStorage.getItem('token');
     const idCurso = 3;
