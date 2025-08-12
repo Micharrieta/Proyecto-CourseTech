@@ -77,6 +77,9 @@
     --radius-md: 0.375rem;
     --radius-lg: 0.5rem;
     --radius-xl: 0.75rem;
+    --ease-in: cubic-bezier(0.4, 0, 1, 1);
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
     --blur-md: 12px;
     --default-transition-duration: 150ms;
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -996,6 +999,12 @@
     --tw-font-weight: var(--font-weight-semibold);
     font-weight: var(--font-weight-semibold);
   }
+  .break-all {
+    word-break: break-all;
+  }
+  .whitespace-normal {
+    white-space: normal;
+  }
   .text-black {
     color: var(--color-black);
   }
@@ -1128,6 +1137,9 @@
     --tw-ease: linear;
     transition-timing-function: linear;
   }
+  .animate-delay-100 {
+    animation-delay: 100ms;
+  }
   .animate-delay-200 {
     animation-delay: 200ms;
   }
@@ -1154,6 +1166,9 @@
   }
   .animate-duration-500 {
     animation-duration: 500ms;
+  }
+  .animate-duration-700 {
+    animation-duration: 700ms;
   }
   .animate-steps-modern {
     animation-timing-function: steps(24);

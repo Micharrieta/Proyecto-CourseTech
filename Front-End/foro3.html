@@ -2,11 +2,12 @@
 <html lang="es">
 
 <head>
-  <script src="theme.js"></script>
+    <script src="theme.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link href="./dist/output.css" rel="stylesheet">
+    <link href="./dist/output.css" rel="stylesheet">
     <title>Foros - Curso 3</title>
+    <script src="animaciones.js"></script>
 </head>
 
 <body class="bg-gray-50 text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
@@ -76,6 +77,15 @@
 </body>
 
 <script>
+    if (window.innerWidth < 768) {
+        animationOutViewport('#mensajes', 'animate-fade-in-right animate-duration-500')
+        animationOutViewport('#form-mensaje', 'animate-pulse-fade-in animate-duration-500 animate-delay-100')
+
+    } else {
+        animationOutViewport('#mensajes', 'animate-fade-in-down animate-duration-500 animate-steps-modern')
+        animationOutViewport('#form-mensaje', 'animate-pulse-fade-in animate-duration-700 animate-delay-500')
+    }
+
     const token = localStorage.getItem('token');
     const idCurso = 3;
     async function cargarMensajes() {
@@ -104,7 +114,7 @@
             div.innerHTML = `
                 <img src="${avatarURL}" alt="avatar" class="w-12 h-12 rounded-full object-cover">
                 <div>
-                <p class="text-gray-800 dark:text-gray-200">${msg.mensaje}</p>
+                <p class="text-gray-800 dark:text-gray-200 break-all whitespace-normal">${msg.mensaje}</p>
                 <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
                     Publicado por <strong>${msg.nombres} ${msg.apellidos}</strong> el ${new Date(msg.fecha).toLocaleString()}
                 </p>
@@ -152,7 +162,7 @@
         window.location.href = 'index.html';
     }
 
-    
+
     function volverIncio() {
         window.location.href = 'inicio.html';
     }
