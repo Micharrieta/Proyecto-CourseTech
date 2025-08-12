@@ -7,7 +7,7 @@ function animationOutViewport(selector, animation) {
             }
         });
     }, {
-        threshold: 0.3
+        threshold: 0.2
     });
 
     document.querySelectorAll(selector).forEach(el => {

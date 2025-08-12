@@ -16,8 +16,8 @@
       <div class="flex justify-between items-center">
 
         <h1
-          class="mb-5 py-2 bg-gradient-to-r from-sky-500 via-sky-600 to-sky-500 inline-block text-transparent bg-clip-text text-6xl font-bold md:mb-6 md:text-9xl lg:text-7xl">
-          Evaluación 2
+          class="mb-5 py-2 bg-gradient-to-r from-sky-500 via-sky-600 to-sky-500 inline-block text-transparent bg-clip-text text-4xl font-bold md:mb-6 md:text-6xl lg:text-7xl">
+          Evaluación 1
         </h1>
 
         <div class="flex items-center gap-2">
@@ -59,7 +59,7 @@
 
       <div id="preguntas" class="mx-auto opacity-0">
       </div>
-      
+
       <form id="form-evaluacion" class="opacity-0">
         <div id="resultado" class="mt-6 text-2xl font-bold text-center text-green-600 hidden">
         </div>
@@ -85,16 +85,21 @@
 </body>
 
 <script>
-  if (window.innerWidth < 768) {
-    animationOutViewport('#preguntas', 'animate-fade-in-right animate-duration-500')
-    animationOutViewport('#form-evaluacion', 'animate-pulse-fade-in animate-duration-500 animate-delay-100')
-    animationOutViewport('#salir', 'animate-pulse-fade-in animate-duration-700 animate-delay-500')
-
-  } else {
-    animationOutViewport('#preguntas', 'animate-fade-in-down animate-duration-500 animate-steps-modern')
-    animationOutViewport('#form-evaluacion', 'animate-pulse-fade-in animate-duration-700 animate-delay-500')
-    animationOutViewport('#salir', 'animate-pulse-fade-in animate-duration-700 animate-delay-500')
-  }
+  window.addEventListener('load', () => {
+    if (window.innerWidth < 768) {
+      setTimeout(() => {
+        animationOutViewport('#preguntas', 'animate-fade-in-right animate-duration-500')
+        animationOutViewport('#form-evaluacion', 'animate-pulse-fade-in animate-duration-500 animate-delay-100')
+        animationOutViewport('#salir', 'animate-pulse-fade-in animate-duration-700 animate-delay-500')
+      }, 500);
+    } else {
+      setTimeout(() => {
+        animationOutViewport('#preguntas', 'animate-fade-in-down animate-duration-500 animate-steps-modern')
+        animationOutViewport('#form-evaluacion', 'animate-pulse-fade-in animate-duration-700 animate-delay-500')
+        animationOutViewport('#salir', 'animate-pulse-fade-in animate-duration-700 animate-delay-500')
+      }, 100)
+    }
+  });
 
   const idEvaluacion = 2; // Cambia según la evaluación
   const token = localStorage.getItem('token');
